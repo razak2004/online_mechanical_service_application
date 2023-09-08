@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../assets/css/profile.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <style>
+      body {
+        flex-direction: column;
+      }
+      main {
+        width: 85%;
+        height: 99%;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1%;
+        /* justify-content: start; */
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      span {
+        color: black;
+      }
+      section {
+        width: 90%;
+        height: 90%;
+        background: linear-gradient(-45deg, #651239, #e83e8c);
+        border-radius: 30px;
+        border: 3px solid black;
+        /* border-radius: 30px; */
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 5%;
+      }
+      section div {
+        width: 450px;
+        height: 90%;
+        background-color: white;
+        margin-top: 5px;
+        border-radius: 30px;
+        border: 3px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .detail {
+        width: 80%;
+        border-bottom: 2px solid black;
+        height: 60px;
+        /* display: flex; */
+        /* justify-content: center; */
+      }
+      .image {
+        width: 350px;
+        height: 120px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10%;
+      }
+      .image img {
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        border-radius: 10px;
+      }
+      header {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10%;
+      }
+      header div {
+        display: flex;
+        width: 15%;
+        align-items: center;
+        justify-content: end;
+        gap: 10%;
+      }
+      span {
+        font-size: 40px;
+      }
+      button {
+        width: 100px;
+        height: 30px;
+        margin-bottom: 10px;
+        background-color: black;
+        color: aliceblue;
+        outline: none;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+      }
+      button:hover {
+        cursor: pointer;
+        background-color: #e83e8c;
+        color: black;
+        border: 2px solid black;
+      }
+      span:hover {
+        cursor: pointer;
+        transform: scale(1.3);
+        color: cornflowerblue;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <p>Click to edit</p>
+          <span onclick="profile()" class="material-symbols-outlined">
+            edit_note
+          </span>
+        </div>
+        <h1>Your profile</h1>
+        <div>
+          <span
+            onclick="profileSuccess()"
+            style="color: red"
+            class="material-symbols-outlined"
+          >
+            logout
+          </span>
+        </div>
+      </header>
+      <section>
+        <div>
+          <h2>Personal details</h2>
+          <div class="image">
+            <img id="sImg" alt="profile-pic" />
+            <h3>Your profile photo</h3>
+          </div>
+
+          <label class="detail">
+            <h3>Name :</h3>
+            <p id="showname"></p>
+          </label>
+          <label class="detail">
+            <h3>Phone number :</h3>
+            <p id="showphone"></p>
+          </label>
+          <label class="detail">
+            <h3>Email :</h3>
+            <p id="showemail"></p>
+          </label>
+          <label class="detail">
+            <h3>Password :</h3>
+            <p id="showpassword"></p>
+          </label>
+          <label class="detail">
+            <h3>Address :</h3>
+            <p id="showaddress"></p>
+          </label>
+          <label class="detail">
+            <h3>City :</h3>
+            <p id="showcity"></p>
+          </label>
+        </div>
+        <div>
+          <h2>Vehicle details</h2>
+          <div class="image">
+            <img id="showvehicleImage" alt="vehicle image" />
+            <h3>Your vehicle image</h3>
+          </div>
+
+          <label class="detail">
+            <h3>Vehicle type :</h3>
+            <p id="showType"></p>
+          </label>
+          <label class="detail">
+            <h3>fuel type :</h3>
+            <p id="showfType"></p>
+          </label>
+          <label class="detail">
+            <h3>Vehicle Company :</h3>
+            <p id="showCompany"></p>
+          </label>
+          <label class="detail">
+            <h3>Vehicle Model :</h3>
+            <p id="showModel"></p>
+          </label>
+          <label class="detail">
+            <h3>Vehicle year :</h3>
+            <p id="showYear"></p>
+          </label>
+          <label class="detail">
+            <h3>Vehicle Number:</h3>
+            <p id="showNum"></p>
+          </label>
+        </div>
+      </section>
+      <button onclick="profileSuccess()">Save</button>
+      <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"></script>
+
+      <script src="../javascript/cus_profile.js"></script>
+      <script>
+        const sImage = document.getElementById("sImg");
+        const sName = document.getElementById("showname");
+        const sNum = document.getElementById("showphone");
+        const semail = document.getElementById("showemail");
+        const spassword = document.getElementById("showpassword");
+        const saddress = document.getElementById("showaddress");
+        const scity = document.getElementById("showcity");
+        const showvehicleImage = document.getElementById("showvehicleImage");
+        const showType = document.getElementById("showType");
+        const showfType = document.getElementById("showfType");
+        const showCompany = document.getElementById("showCompany");
+        const showModel = document.getElementById("showModel");
+        const showYear = document.getElementById("showYear");
+        const showNum = document.getElementById("showNum");
+
+        sName.innerText = log_cus["name"];
+        sNum.innerText = log_cus["number"];
+        semail.innerText = log_cus["email"];
+        spassword.innerText = "# # # # # #";
+        saddress.innerText = log_cus["address"];
+        scity.innerText = log_cus["city"];
+        sImage.setAttribute("src", log_cus["image"]);
+
+        showvehicleImage.setAttribute("src", cus_vehicle["vehicleImage"]);
+        showType.innerText = cus_vehicle["vehicleType"];
+        showfType.innerText = cus_vehicle["fuelType"];
+        showCompany.innerText = cus_vehicle["VehicleCompany"];
+        showModel.innerText = cus_vehicle["vehicleModel"];
+        showYear.innerText = cus_vehicle["vehicleYear"];
+        showNum.innerText = cus_vehicle["vehicleNumber"];
+
+        function profileSuccess() {
+          alert("Your profile has been saved");
+          window.location.href = "./cust.html";
+        }
+        function profile() {
+          let con = confirm("Are you going to edit");
+          if (con === true) {
+            window.location.href = "./cus_profile.html";
+          } else {
+            return;
+          }
+        }
+      </script>
+    </main>
+  </body>
+</html>

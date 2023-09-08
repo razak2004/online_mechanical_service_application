@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Customer Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../assets/css/profile.css"
+    />
+  </head>
+  <body>
+    <div class="side">
+      <img src="../../assets/images/home/Status update.gif" alt="" />
+      <div class="profile">
+        <img id="C_profile" alt="profileImg" />
+
+        <h1 id="h_name"></h1>
+      </div>
+      <div class="buttonCont">
+        <button
+          class="button"
+          onclick="openprofile('personal','B_pro')"
+          id="B_pro"
+        >
+          Personal
+        </button>
+        <button
+          class="button"
+          onclick="openprofile('Vehicle','W_pro')"
+          id="W_pro"
+        >
+          Vehicle
+        </button>
+      </div>
+      <p>Edit your profile here</p>
+    </div>
+    <div class="container" id="personal">
+      <h1>Personal details</h1>
+      <form id="personal_form">
+        <label for="name"
+          >Name:
+
+          <input
+            type="text"
+            class="personalDis"
+            id="name"
+            name="name"
+            required
+          />
+        </label>
+
+        <label for="email"
+          >Email:
+
+          <input
+            type="email"
+            class="personalDis"
+            id="email"
+            name="email"
+            required
+          />
+        </label>
+
+        <label for="password"
+          >Password:
+
+          <input
+            type="password"
+            class="personalDis"
+            id="password"
+            name="password"
+            required
+          />
+        </label>
+
+        <label for="phone"
+          >Phone:
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="personalDis"
+            pattern="[0-9]{10}"
+            required
+          />
+        </label>
+
+        <label for="address"
+          >Address:
+
+          <textarea
+            id="address"
+            class="personalDis"
+            name="address"
+            required
+          ></textarea>
+        </label>
+
+        <label for="city_state"
+          >City:
+          <select id="city_state" class="personalDis" name="city" required>
+            <option value="">--Select city--</option>
+            <option value="Chennai,TamilNadu">Chennai,TamilNadu</option>
+            <option value="Coimbatore,TamilNadu">Coimbatore,TamilNadu</option>
+            <option value="Salem,TamilNadu">Salem,TamilNadu</option>
+            <option value="Madurai,TamilNadu">Madurai,TamilNadu</option>
+            <option value="Tiruchirappalli,TamilNadu">
+              Tiruchirappalli,TamilNadu
+            </option>
+            <option value="Thoothukudi,TamilNadu">Thoothukudi,TamilNadu</option>
+            <option value="Vellore,TamilNadu">Vellore,TamilNadu</option>
+            <option value="Dindigul,TamilNadu">Dindigul,TamilNadu</option>
+            <option value="Tirunelveli,TamilNadu">Tirunelveli,TamilNadu</option>
+            <option value="Tiruppur,TamilNadu">Tiruppur,TamilNadu</option>
+            <option value="Cuddalore,TamilNadu">Cuddalore,TamilNadu</option>
+            <option value="Karur,TamilNadu">Karur,TamilNadu</option>
+            <option value="Kanchipuram,TamilNadu">Kanchipuram,TamilNadu</option>
+            <option value="Nagapattinam,TamilNadu">
+              Nagapattinam,TamilNadu
+            </option>
+            <option value="Pudukkottai,TamilNadu">Pudukkottai,TamilNadu</option>
+            <option value="Sivaganga,TamilNadu">Sivaganga,TamilNadu</option>
+            <option value="Kumbakonam,TamilNadu">Kumbakonam,TamilNadu</option>
+            <option value="Karaikudi,TamilNadu">Karaikudi,TamilNadu</option>
+            <option value="Hosur,TamilNadu">Hosur,TamilNadu</option>
+            <option value="Ooty,TamilNadu">Ooty,TamilNadu</option>
+            <option value="Ambur,TamilNadu">Ambur,TamilNadu</option>
+            <option value="Gudiyatham,TamilNadu">Gudiyatham,TamilNadu</option>
+            <option value="Pollachi,TamilNadu">Pollachi,TamilNadu</option>
+            <option value="Sivakasi,TamilNadu">Sivakasi,TamilNadu</option>
+            <option value="Komarapalayam,TamilNadu">
+              Komarapalayam,TamilNadu
+            </option>
+            <option value="Neyveli,TamilNadu">Neyveli,TamilNadu</option>
+            <option value="Rajapalayam,TamilNadu">Rajapalayam,TamilNadu</option>
+            <option value="Vaniyambadi,TamilNadu">Vaniyambadi,TamilNadu</option>
+            <option value="Nagercoil,TamilNadu">Nagercoil,TamilNadu</option>
+            <option value="Ramanathapuram,TamilNadu">
+              Ramanathapuram,TamilNadu
+            </option>
+            <option value="Viluppuram,TamilNadu">Viluppuram,TamilNadu</option>
+            <option value="Namakkal,TamilNadu">Namakkal,TamilNadu</option>
+            <option value="Thiruvarur,TamilNadu">Thiruvarur,TamilNadu</option>
+            <option value="Dharmapuri,TamilNadu">Dharmapuri,TamilNadu</option>
+            <option value="Krishnagiri,TamilNadu">Krishnagiri,TamilNadu</option>
+            <option value="Thiruvallur,TamilNadu">Thiruvallur,TamilNadu</option>
+            <option value="Theni,TamilNadu">Theni,TamilNadu</option>
+            <option value="Ariyalur,TamilNadu">Ariyalur,TamilNadu</option>
+            <option value="Perambalur,TamilNadu">Perambalur,TamilNadu</option>
+            <option value="Virudhunagar,TamilNadu">
+              Virudhunagar,TamilNadu
+            </option>
+            <option value="Ranipet,TamilNadu">Ranipet,TamilNadu</option>
+            <option value="Kancheepuram,TamilNadu">
+              Kancheepuram,TamilNadu
+            </option>
+            <option value="Kanyakumari,TamilNadu">Kanyakumari,TamilNadu</option>
+            <option value="Kallakurichi,TamilNadu">
+              Kallakurichi,TamilNadu
+            </option>
+            <option value="Chengalpattu,TamilNadu">
+              Chengalpattu,TamilNadu
+            </option>
+            <option value="Mayiladuthurai,TamilNadu">
+              Mayiladuthurai,TamilNadu
+            </option>
+            <option value="Kodaikanal,TamilNadu">Kodaikanal,TamilNadu</option>
+            <option value="Maduranthakam,TamilNadu">
+              Maduranthakam,TamilNadu
+            </option>
+            <option value="Gudalur,TamilNadu">Gudalur,TamilNadu</option>
+          </select>
+        </label>
+
+        <label for="profile-pic"
+          >ProfilePicture:
+
+          <input
+            type="text"
+            class="personalDis"
+            id="profilepic"
+            name="profile-pic"
+            required
+          />
+        </label>
+
+        <button type="submit">Next</button>
+      </form>
+    </div>
+    <div class="container" id="Vehicle">
+      <h1>Your vehicle details</h1>
+      <form id="vehicle_Form">
+        <label for="v_type"> Vehicle_Type: </label>
+        <select id="v_type" required name="v_type">
+          <option value="select your type">select your type</option>
+          <option value="Two Wheelers">Two Wheelers</option>
+          <option value="Three Wheelers">Three Wheelers</option>
+          <option value="Four Wheelers">Four Wheelers</option>
+        </select>
+
+        <label for="f_type"> Fuel_Type: </label>
+        <select id="f_type" required name="v_type">
+          <option value="select your Fuel">select your Fuel</option>
+          <option value="Petrol">Petrol</option>
+          <option value="Deisel">Deisel</option>
+        </select>
+
+        <label for="v_Company">Vehicle_Company: </label>
+        <select name="company" required id="v_company"></select>
+
+        <label for="model">Select model :</label>
+        <select id="model" required name="model"></select>
+
+        <label for="year">
+          Vehicle_Year:
+
+          <input
+            type="num"
+            class="vehicleDis"
+            name=""
+            pattern="[0-9]{1}"
+            title="Numbers of one characters are allowed"
+            required
+            id="year1"
+          />
+          <input
+            type="num"
+            class="vehicleDis"
+            name=""
+            pattern="[0-9]{1}"
+            title="Numbers of one characters are allowed"
+            required
+            id="year2"
+          />
+          <input
+            type="num"
+            class="vehicleDis"
+            name=""
+            pattern="[0-9]{1}"
+            title="Numbers of one characters are allowed"
+            required
+            id="year3"
+          />
+          <input
+            type="num"
+            class="vehicleDis"
+            name=""
+            pattern="[0-9]{1}"
+            title="Numbers of one characters are allowed"
+            required
+            id="year4"
+          />
+        </label>
+
+        <label for="v_num">
+          Vehicle_Number:
+
+          <input
+            type="text"
+            pattern="[A-Z]{2}"
+            class="vehicleDis"
+            name=""
+            required
+            id="v_num1"
+            placeholder="TN"
+          />
+          <input
+            type="num"
+            pattern="[0-9]{2}"
+            class="vehicleDis"
+            name=""
+            required
+            id="v_num2"
+            placeholder="00"
+          />
+          <input
+            type="text"
+            pattern="[A-Z]{1,2}"
+            class="vehicleDis"
+            name=""
+            required
+            id="v_num3"
+            placeholder="AB"
+          />
+          <input
+            type="num"
+            pattern="[0-9]{4}"
+            class="vehicleDis"
+            name=""
+            required
+            id="v_num4"
+            placeholder="0000"
+          />
+        </label>
+        <label for="v_img">
+          Vehicle_image:
+
+          <input type="text" required name="" id="v_img" />
+        </label>
+
+        <button type="submit">submit</button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"></script>
+
+    <script src="../javascript/validation.js"></script>
+    <script src="../javascript/cus_profile.js"></script>
+  </body>
+</html>

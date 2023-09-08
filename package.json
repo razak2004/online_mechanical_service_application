@@ -1,0 +1,24 @@
+{
+  "name": "reparo",
+  "version": "1.0.0",
+  "description": "Abdul Razak web project  (REPARO - it is a spanish term which means to repair or fix something)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fssa-batch3/abdulrazak.nasriudeen__web_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fssa-batch3/abdulrazak.nasriudeen__web_project/issues"
+  },
+  "homepage": "https://github.com/fssa-batch3/abdulrazak.nasriudeen__web_project#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.3"
+  }
+}

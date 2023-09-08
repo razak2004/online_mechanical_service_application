@@ -1,0 +1,203 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  gap: 1%;
+  align-items: center;
+  justify-content: center;
+  height: 800px;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Lexend Deca", sans-serif;
+}
+
+.container {
+  width: 40%;
+  gap: 3%;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(-45deg, #e83e8c, #6610f2);
+  color: white;
+  border: 2px solid white;
+  height: 90%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 50px;
+  border-radius: 100px;
+  /* color: black; */
+  font-weight: 800;
+  /* border-radius: 50px; */
+  animation-name: cont;
+  animation-duration: 1s;
+}
+@keyframes cont {
+  0% {
+    transform: rotateX(180deg);
+  }
+}
+.container button {
+  align-self: center;
+  /* margin-left: 30%; */
+  background-color: #6610f2;
+  width: 40%;
+  height: 5%;
+  border-radius: 10px;
+  color: white;
+  border: 1px solid white;
+}
+
+h1 {
+  text-align: center;
+  /* margin-bottom: 50px; */
+}
+h2 {
+  display: flex;
+  width: 100%;
+  /* height: 5%; */
+  justify-content: center;
+}
+h2 img {
+  height: 50px;
+  width: 50px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* gap: 10%; */
+}
+form button {
+  width: 50%;
+  height: 5%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  width: 95%;
+
+  align-items: center;
+
+  /* display: fl; */
+  /* margin-bottom: 10px; */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="num"],
+textarea,
+select {
+  padding: 10px;
+  /* margin-bottom: 20px; */
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  background-color: #111;
+  color: white;
+}
+label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 2%;
+  color: white;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  background-color: #111;
+  /* color: black; */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #dc3545;
+}
+.side {
+  height: 90%;
+  width: 30%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  gap: 2%;
+  color: #111;
+  border-radius: 70px;
+  padding-bottom: 1%;
+}
+.side img {
+  height: 40%;
+  width: 60%;
+}
+.button {
+  height: 35%;
+  width: 70%;
+  font-size: 20px;
+  border: none;
+  /* background-color: #ff4154; */
+  color: black;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  /* font-size: 30px; */
+  font-family: "Lexend Deca", sans-serif;
+  cursor: pointer;
+}
+
+.button:hover {
+  box-shadow: 2px 2px black;
+}
+.buttonCont {
+  /* width: 60%; */
+  height: 45%;
+  width: 100%;
+  gap: 5%;
+  align-items: end;
+  font-size: 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#C_profile {
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+.profile {
+  display: flex;
+  gap: 10%;
+  width: 100%;
+  align-items: center;
+  padding-left: 5%;
+  justify-content: center;
+}
+/* complete button */
+.com {
+  width: 40%;
+  height: 5%;
+  border-radius: 30px;
+  outline: none;
+  /* border: none; */
+}
+/* mechanic profile */
+.serviceList {
+  display: none;
+}
+#service {
+  gap: 5%;
+}
+/* .vehicleDis {
+  padding-left: 20px;
+} */

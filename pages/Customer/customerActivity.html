@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Notifications</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/customer.css" />
+    <style>
+      /*  */
+      section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 400px;
+        height: 600px;
+        border: 2px solid black;
+        margin-top: 20px;
+        background-color: white;
+        border-radius: 50px;
+      }
+      section img {
+        width: 250px;
+        height: 400px;
+      }
+      button {
+        width: 200px;
+        height: 60px;
+        border-radius: 20px;
+        border: 3px solid black;
+        background-color: #fe3044;
+        color: white;
+        /* margin-top: 10px; */
+        font-size: 20px;
+      }
+      .timer {
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        gap: 3%;
+        width: 70%;
+      }
+      span {
+        font-size: 25px;
+        /* color: rgb(0, 255, 0); */
+      }
+      #notFind {
+        display: none;
+      }
+      #notFind button {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <img src="../../assets/images/logo.png" alt="logo" />
+      <ul>
+        <li>
+          <a href="./cust.html">
+            <i class="material-symbols-outlined"> dashboard </i>
+            <p>Home</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="" style="background-color: white; color: #fe3044">
+            <i class="material-symbols-outlined"> activity_zone </i>
+            <p>Your Activity</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="material-symbols-outlined"> shopping_cart </i>
+            <p>Our Products</p>
+          </a>
+        </li>
+        <li>
+          <a href="./showprofile.html">
+            <i class="material-symbols-outlined"> account_circle </i>
+            <p>Profile</p>
+          </a>
+        </li>
+        <li>
+          <a href="./customerNotification.html">
+            <i class="material-symbols-outlined"> notifications </i>
+            <p>Notifications</p>
+          </a>
+        </li>
+        <li>
+          <a href="" id="settings">
+            <i class="material-symbols-outlined"> settings </i>
+            <p>Settings</p>
+          </a>
+        </li>
+        <!-- <li>
+          <a onclick="delUser()">
+            <i class="material-symbols-outlined"> delete </i>
+            <div>Delete Account</div>
+          </a>
+        </li> -->
+
+        <!-- <li>
+          <a href="#">
+            <i class="material-symbols-outlined"> contact_support </i>
+            <div>Help</div>
+          </a>
+        </li> -->
+        <li>
+          <a href="../../index.html">
+            <i class="material-symbols-outlined"> logout </i>
+            <div>log Out</div>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="section" id="activitySection">
+      <section id="notFind">
+        <img
+          src="../../assets/images/customer/speech-bubble.gif"
+          alt="notfinding"
+        />
+        <h2>Sorry the estimated time is out</h2>
+        <button
+          style="background-color: aquamarine; color: black"
+          onclick="startFinding()"
+        >
+          Start again
+        </button>
+        <button id="CancelnotfindCard">cancel Request</button>
+      </section>
+      <!-- <section class="waitingCard">
+        <img src="../../assets/images/workshop/wait.gif" alt="waiting" />
+        <h2>Waiting For Your service</h2>
+        <button>Cancel</button>
+      </section> -->
+    </div>
+    <script>
+      let minutes = 0;
+      let seconds = 0;
+
+      function startTimer() {
+        let notFind = document.getElementById("notFind");
+        let finding = document.getElementById("finding_workshop");
+        let timer;
+        timer = setInterval(function () {
+          seconds++;
+          if (minutes === 1) {
+            // alert("timeOut");
+            notFind.style.display = "flex";
+            finding.style.display = "none";
+          }
+          if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes === 60) {
+              minutes = 0;
+              hours++;
+            }
+          }
+          updateTimerDisplay();
+        }, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(timer);
+      }
+
+      function updateTimerDisplay() {
+        var minutesStr = padZero(minutes);
+        var secondsStr = padZero(seconds);
+
+        document.getElementById("minutes").textContent = minutesStr;
+        document.getElementById("seconds").textContent = secondsStr;
+      }
+
+      function padZero(num) {
+        return num.toString().padStart(2, "0");
+      }
+
+      function startFinding() {
+        window.location.reload();
+        minutes = 0;
+        seconds = 0;
+      }
+
+      //   document.getElementById("startBtn").addEventListener("click", startTimer);
+      //   document.getElementById("stopBtn").addEventListener("click", stopTimer);
+    </script>
+
+    <script
+      type="module"
+      src="../../assets/javascript/customerActivity.js"
+    ></script>
+  </body>
+</html>

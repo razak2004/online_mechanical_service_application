@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample</title>
+  </head>
+  <body>
+    <button onclick="addUser()">addUser</button>
+    <div id="response"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- <script>
+      function addUser() {
+        const url = "http://localhost:8080/user/create"; // Replace with your backend URL
+
+        // Data to send in the request body
+        const data = {
+          name: "abdulTest",
+          number: 9566125435,
+          password: "abd123",
+          role: 2,
+        };
+
+        // Create an object for the request headers
+        const headers = {
+          "Content-Type": "application/json", // Set the content type to JSON
+        };
+
+        // Create the request object
+        const request = new Request(url, {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(data), // Convert the data to JSON string
+        });
+
+        // Send the POST request
+        fetch(request)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response; // Parse the response as JSON
+          })
+          .then((data) => {
+            // Handle the response data here
+            console.log("Response from server:", data);
+            alert(JSON.stringify(data));
+          })
+          .catch((error) => {
+            // Handle any errors that occurred during the request
+            console.error("Error:", response);
+          });
+      }
+    </script> -->
+    <script></script>
+  </body>
+</html>

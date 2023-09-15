@@ -359,9 +359,9 @@
           <span class="material-symbols-outlined"> bike_scooter </span>
           <select name="workShop type" id="vehicleType">
             <option value="">Select type</option>
-            <option value="2 wheelers">2 wheelers</option>
-            <option value="3 wheelers">3 wheelers</option>
-            <option value="4 wheelers">4 wheelers</option>
+            <option value="2">2 wheelers</option>
+            <option value="3">3 wheelers</option>
+            <option value="4">4 wheelers</option>
           </select>
         </div>
         <div class="inputCont">
@@ -485,7 +485,7 @@
       </button>
     </form>
 
-    <form class="createAccountDiv" id="numberForm">
+    <form class="createAccountDiv" id="numberForm"  style="display: none;>
       <h3>Sign up</h3>
       <div class="inputCont">
         <span class="material-symbols-outlined"> badge </span>
@@ -516,7 +516,7 @@
           type="password"
           placeholder="Create password"
           id="signPassword"
-          pattern="[0-9]{4}"
+          pattern="[a-zA-Z0-9]{6,10}"
           required
         />
       </div>
@@ -526,27 +526,17 @@
           type="password"
           placeholder="Confirm Password "
           id="confirmPassword"
+          pattern="[a-zA-Z0-9]{6,10}"
           required
         />
       </div>
-      <button>Verify phone number</button>
+      <button>Create Account</button>
       <p>
         Already have an account ?
         <span style="color: blue" id="loginBtn"> Login </span>
       </p>
     </form>
-    <form class="otp" id="otpForm">
-      <h4>Please enter the OTP send to your number</h4>
-      <h5 id="phoneNumber"></h5>
-      <div class="inputCont">
-        <span class="material-symbols-outlined"> dialpad </span>
-        <input type="text" placeholder="Enter OTP" id="otpValue" required />
-      </div>
-      <button>Verify Otp</button>
-      <h6>Haven't get your OTP</h6>
-      <h5>Resend - it</h5>
-    </form>
-    <form action="" id="workshopLoginForm">
+    <form action="" id="workshopLoginForm" style="display: flex;">
       <h3>Login</h3>
       <div class="inputCont">
         <span class="material-symbols-outlined"> call </span>
@@ -561,7 +551,7 @@
       <div class="inputCont">
         <span class="material-symbols-outlined"> key </span>
         <input
-          pattern="[0-9]{3,6}"
+          pattern="[0-9A-Za-z]{4,10}"
           type="password"
           placeholder="Enter your password "
           id="loginPassword"
@@ -574,10 +564,11 @@
         <span id="signBtn" style="color: blue"> Sign up </span>
       </p>
     </form>
-    <script
-      type="module"
-      src="../assets/javascript/workShopFireBase.js"
-    ></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"></script>
+
+    <script src="../assets/javascript/postRequest.js"></script>
+    <script src="../assets/javascript/postLoginRequest.js"></script>
     <script type="module" src="../assets/javascript/workshop.js"></script>
     <script src="../assets/javascript/JSON.js"></script>
     <script src="../assets/javascript/buildedfunction.js"></script>
@@ -604,7 +595,5 @@
         }
       });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"></script>
   </body>
 </html>

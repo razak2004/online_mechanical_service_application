@@ -1,13 +1,21 @@
+function isNumber(str) {
+  // Use the isNaN() function to check if the string can be converted to a number
+  // isNaN() returns true for strings that cannot be converted to numbers
+  return !isNaN(str);
+}
+let id;
+let userRes = {};
 function addUser(data) {
-  const url = "http://localhost:8080/user/create"; // Replace with your Spring Boot backend URL
+  const url = "http://localhost:8080/user/createUser"; // Replace with your Spring Boot backend URL
 
   // Data to send in the request body
 
   // Create a new XMLHttpRequest object
   const xhr = new XMLHttpRequest();
+  let id = "";
 
   // Configure the request
-  xhr.open("POST", url, true);
+  xhr.open("POST", url, false);
   xhr.setRequestHeader("Content-Type", "application/json"); // Set the content type to JSON
 
   // Define a callback function to handle the response
@@ -15,8 +23,14 @@ function addUser(data) {
     if (xhr.status === 200) {
       // Successful response
       const response = xhr.responseText;
-      alert(response);
-      console.log("Response from server:", response);
+      id = response;
+
+      if (isNumber(response)) {
+        Notify.success("Account created successfully");
+      } else {
+        Notify.error(response);
+      }
+      id = response;
     } else {
       // Error response
       console.error("Error:", xhr.statusText);
@@ -30,26 +44,194 @@ function addUser(data) {
 
   // Send the POST request with the JSON data
   xhr.send(JSON.stringify(data));
+  return id;
+}
+function getUserBynum(num) {
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Define the URL for your Spring Boot GET endpoint
+  var url = "http://localhost:8080/user/findByNum?number=" + num; // Replace with your actual endpoint URL
+
+  let user = {};
+
+  // Configure the request
+  xhr.open("GET", url, false);
+
+  // Set up a callback function to handle the response
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Successful response
+      var responseData = xhr.responseText;
+
+      console.log(responseData);
+      // You can parse the response as JSON if it's JSON data
+      alert(responseData);
+      var jsonObject = eval("(" + responseData + ")");
+      user = jsonObject;
+      // console.log(parsedData);
+    } else {
+      // Error response
+      console.error("Error:", xhr.statusText);
+    }
+  };
+
+  // Set up a callback function to handle network errors
+  xhr.onerror = function () {
+    console.error("Network error occurred");
+  };
+
+  // Send the GET request
+  xhr.send();
+  return user;
+}
+function addWorkshop(data, userId) {
+  const url = "http://localhost:8080/workshop/createWorkshop?userId=" + userId;
+
+  // Create a new XMLHttpRequest object
+  const xhr = new XMLHttpRequest();
+  let id = "";
+
+  // Configure the request
+  xhr.open("POST", url, false);
+  xhr.setRequestHeader("Content-Type", "application/json"); // Set the content type to JSON
+
+  // Define a callback function to handle the response
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Successful response
+      const response = xhr.responseText;
+      if (isNumber(response)) {
+        Notify.success("Now you are the member of our company");
+        alert(response);
+      } else {
+        Notify.error(response);
+      }
+      id = response;
+    } else {
+      // Error response
+      console.error("Error:", xhr.statusText);
+    }
+  };
+
+  // Define a callback function to handle network errors
+  xhr.onerror = function () {
+    console.error("Network error occurred");
+  };
+
+  // Send the POST request with the JSON data
+  xhr.send(JSON.stringify(data));
+  return id;
 }
 
+// user registration form
 const signUpForm = document.getElementById("signUpForm");
 // signUp form
-signUpForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let name = document.getElementById("name").value;
-  let number = document.getElementById("number").value;
-  let password = document.getElementById("password").value;
-  let confirmPassword = document.getElementById("confirmPassword").value;
-  if (password != confirmPassword) alert("Confirm passwords is not matching");
-  let data = {
-    name,
-    number,
-    password,
-    role: 2,
-  };
-  addUser(data);
-});
+if (signUpForm != null) {
+  signUpForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let name = document.getElementById("name").value;
+    let number = document.getElementById("number").value;
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    if (password != confirmPassword) alert("Confirm passwords is not matching");
+    let data = {
+      name,
+      number,
+      password,
+      role: 2,
+    };
+    addUser(data);
+    openDiv("#loginForm", "#signUpForm");
+  });
+}
 
-// Example user data to send in the request body
+// workshop
+const numberForm = document.getElementById("numberForm");
+if (numberForm != null) {
+  numberForm.addEventListener("submit", async (e) => {
+    // Add 'async' keyword here
+    e.preventDefault();
+    let name = document.getElementById("signName").value;
+    let number = document.getElementById("signNumber").value;
+    let password = document.getElementById("signPassword").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
 
-// Call the function to create a new user
+    if (password != confirmPassword) {
+      Notify.error("Passwords do not match");
+      return;
+    }
+
+    let user = {
+      name,
+      number,
+      password,
+      role: 3,
+    };
+
+    id = await addUser(user); // Add 'await' here
+    userRes = await getUserBynum(user.number);
+    openDiv("#workshopForm", "#numberForm");
+
+    const stName = document.getElementById("ownerName");
+    stName.value = userRes.name;
+    const stNum = document.getElementById("ownerNumber");
+    stNum.value = userRes.number;
+  });
+}
+
+const workshopForm = document.getElementById("workshopForm");
+if (workshopForm != null) {
+  workshopForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    let image = document.getElementById("image").value;
+    let workshopName = document.getElementById("workshopName").value;
+    let country = document.getElementById("countries").value;
+    let state = document.getElementById("state").value;
+    let city = document.getElementById("district").value;
+    let address = document.getElementById("address").value;
+    let type = document.getElementById("vehicleType").value;
+    let openTime = document.getElementById("openTime").value;
+    let closeTime = document.getElementById("closeTime").value;
+    let generalPrice = document.getElementById("GeneralCost").value;
+    let enginePrice = document.getElementById("engineCost").value;
+    let electricalPrice = document.getElementById("electricCost").value;
+    let suspensionPrice = document.getElementById("SuspensionCost").value;
+
+    let workshopObj = {
+      workshopName,
+      country,
+      state,
+      city,
+      address,
+      type,
+      openTime,
+      closeTime,
+      generalPrice,
+      enginePrice,
+      electricalPrice,
+      suspensionPrice,
+      image,
+      latitude: 0,
+      longitude: 0,
+    };
+    // get latitude and longitude
+    navigator.geolocation.getCurrentPosition(
+      async function (position) {
+        workshopObj.latitude = position.coords.latitude;
+        workshopObj.longitude = position.coords.longitude;
+        let workshopId = await addWorkshop(workshopObj, id);
+        if (isNumber(workshopId) && workshopId != 0) {
+          Notify.success("Thank you for registering your workShop");
+          openDiv("#workshopLoginForm", "#workshopForm");
+        } else {
+          return;
+        }
+      },
+      function (error) {
+        // Handle errors, such as user denying permission or unable to determine location
+        console.error("Error getting location: " + error.message);
+      }
+    );
+  });
+}

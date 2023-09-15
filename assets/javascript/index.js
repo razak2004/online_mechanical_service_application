@@ -1,12 +1,4 @@
-const signUpForm = document.getElementById("signUpForm");
-const otpForm = document.getElementById("otpVerify");
-const loginForm = document.getElementById("loginForm");
-
 // Define the data to be sent in the POST request
-const postData = {
-  username: "john_doe",
-  password: "secret123",
-};
 
 // Send the POST request
 
@@ -25,26 +17,6 @@ const signLogOut = document.getElementById("signLogOut");
 signLogOut.addEventListener("click", () => {
   signUpForm.style.display = "none";
 });
-
-// otp
-otpForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let otp = document.getElementById("otpValue").value;
-  if (otp == oneUser["otp"]) {
-    alert("Phone number verified ");
-    addUser(oneUser);
-    alert("Account created try to login");
-    openDiv("#loginForm", "#otpVerify");
-  }
-});
-
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let logNumber = document.getElementById("loginNumber").value;
-  let logPassword = document.getElementById("loginPassword").value;
-  read(logNumber, logPassword, 1);
-});
-
 const LoginExit = document.getElementById("LoginExit");
 LoginExit.addEventListener("click", () => {
   loginForm.style.display = "none";

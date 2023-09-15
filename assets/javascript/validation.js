@@ -124,3 +124,10 @@ function hasAlp(e) {
   // if no uppercase alphabet is found, return false
   return false;
 }
+function isAlphaNumericPassword(password) {
+  // Regular expression to match only alphabets and numbers
+  const regex = /^[a-zA-Z0-9]+$/;
+
+  // Test the password against the regular expression
+  return regex.test(password);
+}

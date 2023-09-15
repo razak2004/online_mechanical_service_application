@@ -111,36 +111,6 @@ stateArr.addEventListener("change", async () => {
 let oneWorkshop = {};
 let workshops = JSON.parse(localStorage.getItem("workshops"));
 // number registration
-const numberForm = document.getElementById("numberForm");
-numberForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let workshopId = Date.now();
-  let name = document.getElementById("signName").value;
-  let number = document.getElementById("signNumber").value;
-  let password = document.getElementById("signPassword").value;
-  let confirmPassword = document.getElementById("confirmPassword").value;
-  let otp = generateOTP();
-  if (password != confirmPassword) {
-    Notify.error("Passwords do not match");
-    return;
-  }
-
-  let work = {
-    workshopId,
-    name,
-    number,
-    password,
-    otp,
-  };
-  let check = checkUserFunction(work);
-  if (check == false) {
-    let phoneNumber = document.getElementById("phoneNumber");
-    phoneNumber.innerText = work["number"];
-    oneWorkshop = work;
-    alert(otp + ",");
-    openDiv("#otpForm", "#numberForm");
-  }
-});
 
 //otp
 const otpForm = document.getElementById("otpForm");
@@ -167,67 +137,6 @@ otpForm.addEventListener("submit", (e) => {
 });
 
 console.log(oneWorkshop);
-const workshopForm = document.getElementById("workshopForm");
-workshopForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let name = document.getElementById("ownerName").value;
-  let number = document.getElementById("ownerNumber").value;
-  let password = oneWorkshop["password"];
-  let workShopID = oneWorkshop["workshopId"];
-  let pickupService = false;
-  let breakdownService = false;
-  let image = document.getElementById("image").value;
-  let workshopName = document.getElementById("workshopName").value;
-  let workshopCountry = document.getElementById("countries").value;
-  let workshopState = document.getElementById("state").value;
-  let workshopCity = document.getElementById("district").value;
-  let workshopAddress = document.getElementById("address").value;
-  let workshopType = document.getElementById("vehicleType").value;
-  let openTime = document.getElementById("openTime").value;
-  let closeTime = document.getElementById("closeTime").value;
-  let GeneralCost = document.getElementById("GeneralCost").value;
-  let engineCost = document.getElementById("engineCost").value;
-  let electricCost = document.getElementById("electricCost").value;
-  let SuspensionCost = document.getElementById("SuspensionCost").value;
-  let pickupCheck = document.getElementById("pickupService").checked;
-  let breakdownCheck = document.getElementById("breakdownService").checked;
-  if (pickupCheck == true) {
-    pickupService = true;
-  }
-  if (breakdownCheck == true) {
-    breakdownService = true;
-  }
-
-  // if (JSON.parse(localStorage.getItem("workshops")) != null) {
-  //   workshops = JSON.parse(localStorage.getItem("workshops"));
-  // }
-  let workshopObj = {
-    name,
-    number,
-    password,
-    workShopID,
-    workshopName,
-    workshopCountry,
-    workshopState,
-    workshopCity,
-    workshopAddress,
-    workshopType,
-    openTime,
-    closeTime,
-    GeneralCost,
-    engineCost,
-    electricCost,
-    SuspensionCost,
-    pickupService,
-    breakdownService,
-    image,
-  };
-  workshops.push(workshopObj);
-  set(ref(db, "workshop/"), workshops);
-
-  Notify.success("Thank you for registering your workShop");
-  openDiv("#workshopLoginForm", "#workshopForm");
-});
 
 //login
 let loginForm = document.getElementById("workshopLoginForm");
@@ -305,12 +214,12 @@ OwnerNumber.addEventListener("change", (e) => {
 let checkPassword = document.getElementById("signPassword");
 checkPassword.addEventListener("change", (e) => {
   e = checkPassword.value;
-  let numberCheck = hasNumber(e);
+  let numberCheck = isAlphaNumericPassword(e);
   let len = e.length;
   if (numberCheck == false) {
-    Notify.error("only numbers are accepted");
+    Notify.error("only Alphanumeric Characters  are accepted");
   }
-  if (len != 4) {
-    Notify.error("password should be in 4 digits");
+  if (len > 10 || len < 6) {
+    Notify.error("password should be more than 6 digits");
   }
 });

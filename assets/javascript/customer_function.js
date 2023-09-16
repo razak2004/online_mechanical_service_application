@@ -1,19 +1,7 @@
-const loggedUser = localStorage.getItem("LoginUser");
-let users = JSON.parse(localStorage.getItem("users"));
-let loggedUserObj = users.find((e) => {
-  if (e["user_id"] == loggedUser) {
-    return true;
-  }
-});
-
-let showName = document.getElementById("userName");
-showName.innerText = "Hi..!      " + loggedUserObj["name"];
-let workShops = JSON.parse(localStorage.getItem("workshops"));
+// let workShops = JSON.parse(localStorage.getItem("workshops"));
 
 //
-for (let i = 0; i < workShops.length; i++) {
-  createWorkshop(workShops[i], "workshops");
-}
+
 // filter function
 function filter(arr, val, id) {
   let fliterArr = arr.filter((e) => {

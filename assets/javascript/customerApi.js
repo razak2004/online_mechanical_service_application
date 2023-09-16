@@ -52,8 +52,6 @@ function getAllWorkshops(id) {
     if (xhr.status === 200) {
       // Successful response
       var responseData = xhr.responseText;
-
-      console.log(responseData);
       workshops = JSON.parse(responseData);
     } else {
       // Error response
@@ -76,3 +74,6 @@ let userName = document.getElementById("userName");
 userName.innerText = "Hi " + user.name + " ! !";
 let workshops = getAllWorkshops(userId);
 console.log(workshops);
+for (let i = 0; i < workshops.length; i++) {
+  createWorkshop(workshops[i], "workshops");
+}

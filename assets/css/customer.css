@@ -440,7 +440,7 @@ button {
 
 .workShopCard {
   width: 300px;
-  height: 220px;
+  height: 450px;
   border-radius: 30px;
   background-color: white;
   display: flex;
@@ -450,6 +450,10 @@ button {
   align-items: center;
   border: 1px solid black;
 }
+.workShopCard span {
+  font-size: 220px;
+}
+
 .workShopCard img {
   border: 1px solid black;
   width: 90%;

@@ -3,9 +3,13 @@ function createWorkshop(obj, id) {
   const div = document.createElement("div");
   div.classList.add("workShopCard");
 
-  //   const img = document.createElement("img");
-  //   img.setAttribute("src", obj["image"]);
-  //   img.setAttribute("alt", "workshop image");
+  const icon = document.createElement("span");
+  icon.classList.add("material-symbols-outlined");
+  icon.innerText = "store";
+
+  const img = document.createElement("img");
+  img.setAttribute("src", obj["image"]);
+  img.setAttribute("alt", "workshop image");
 
   const h3 = document.createElement("h3");
   h3.textContent = obj["workshopName"];
@@ -45,8 +49,10 @@ function createWorkshop(obj, id) {
   p.innerText = "View";
   button.append(p);
 
+  if (obj["image"] == null) div.appendChild(icon);
   // Append elements to their respective parents
-  //   div.appendChild(img);
+  else div.appendChild(img);
+
   div.appendChild(h3);
   div.appendChild(cardMidDiv);
 

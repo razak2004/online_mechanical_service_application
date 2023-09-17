@@ -71,9 +71,11 @@ function getAllWorkshops(id) {
 let userId = localStorage.getItem("loginUserId");
 let user = getUserBynum(userId);
 let userName = document.getElementById("userName");
-userName.innerText = "Hi " + user.name + " ! !";
-let workshops = getAllWorkshops(userId);
-console.log(workshops);
-for (let i = 0; i < workshops.length; i++) {
-  createWorkshop(workshops[i], "workshops");
+if (userName != null) {
+  userName.innerText = "Hi " + user.name + " ! !";
+  let workshops = getAllWorkshops(userId);
+  console.log(workshops);
+  for (let i = 0; i < workshops.length; i++) {
+    createWorkshop(workshops[i], "workshops");
+  }
 }

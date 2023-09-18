@@ -14,6 +14,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../assets/css/customer.css" />
+    <link rel="stylesheet" href="../../assets/css/customerActivity.css" />
     <style>
       /*  */
       section {
@@ -104,19 +105,6 @@
             <p>Settings</p>
           </a>
         </li>
-        <!-- <li>
-          <a onclick="delUser()">
-            <i class="material-symbols-outlined"> delete </i>
-            <div>Delete Account</div>
-          </a>
-        </li> -->
-
-        <!-- <li>
-          <a href="#">
-            <i class="material-symbols-outlined"> contact_support </i>
-            <div>Help</div>
-          </a>
-        </li> -->
         <li>
           <a href="../../index.html">
             <i class="material-symbols-outlined"> logout </i>
@@ -125,83 +113,46 @@
         </li>
       </ul>
     </nav>
-    <div class="section" id="activitySection">
-      <section id="notFind">
-        <img
-          src="../../assets/images/customer/speech-bubble.gif"
-          alt="notfinding"
-        />
-        <h2>Sorry the estimated time is out</h2>
-        <button
-          style="background-color: aquamarine; color: black"
-          onclick="startFinding()"
-        >
-          Start again
-        </button>
-        <button id="CancelnotfindCard">cancel Request</button>
-      </section>
-      <!-- <section class="waitingCard">
-        <img src="../../assets/images/workshop/wait.gif" alt="waiting" />
-        <h2>Waiting For Your service</h2>
-        <button>Cancel</button>
-      </section> -->
+    <div class="sectionDiv">
+      <h2 id="bookingNotfound" style="display: none"></h2>
+      <div class="waitingCard">
+        <img src="../../assets/images/customer/way.gif" alt="" />
+        <h4 id="workshopNo">
+          Searching Workshops
+          <i class="material-symbols-outlined"> settings_input_antenna </i>
+        </h4>
+        <button id="cancelButton">Cancel Request</button>
+      </div>
+      <div class="workshopContain" id="container"></div>
     </div>
+
+    <script src="../../assets/javascript/customerBookingApi.js"></script>
+
     <script>
-      let minutes = 0;
-      let seconds = 0;
+      let bookingId = localStorage.getItem("livebookingId");
+      if (bookingId == null) {
+        const h2 = document.getElementById("bookingNotfound");
+        h2.style.display = "flex";
+        const waitingCard = document.querySelector(".waitingCard");
+        waitingCard.style.display = "none";
 
-      function startTimer() {
-        let notFind = document.getElementById("notFind");
-        let finding = document.getElementById("finding_workshop");
-        let timer;
-        timer = setInterval(function () {
-          seconds++;
-          if (minutes === 1) {
-            // alert("timeOut");
-            notFind.style.display = "flex";
-            finding.style.display = "none";
+        h2.innerText = "No live bookings available";
+      } else {
+        let i = 0;
+        let nearWorkshops = findNearByWorkshopsApi(bookingId);
+        nearWorkshops.sort((a, b) => a.distance - b.distance);
+
+        const intervalId = setInterval(() => {
+          if (i < 3) {
+            let h2 = document.getElementById("workshopNo");
+            h2.innerText = "Founded " + (i + 1) + " Workshop near you";
+            oneWorkshopCard(nearWorkshops[i], "container");
           }
-          if (seconds === 60) {
-            seconds = 0;
-            minutes++;
-            if (minutes === 60) {
-              minutes = 0;
-              hours++;
-            }
-          }
-          updateTimerDisplay();
-        }, 1000);
+          i++;
+        }, 6000);
+
+        console.log("near workshops", nearWorkshops);
       }
-
-      function stopTimer() {
-        clearInterval(timer);
-      }
-
-      function updateTimerDisplay() {
-        var minutesStr = padZero(minutes);
-        var secondsStr = padZero(seconds);
-
-        document.getElementById("minutes").textContent = minutesStr;
-        document.getElementById("seconds").textContent = secondsStr;
-      }
-
-      function padZero(num) {
-        return num.toString().padStart(2, "0");
-      }
-
-      function startFinding() {
-        window.location.reload();
-        minutes = 0;
-        seconds = 0;
-      }
-
-      //   document.getElementById("startBtn").addEventListener("click", startTimer);
-      //   document.getElementById("stopBtn").addEventListener("click", stopTimer);
     </script>
-
-    <script
-      type="module"
-      src="../../assets/javascript/customerActivity.js"
-    ></script>
   </body>
 </html>

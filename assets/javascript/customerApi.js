@@ -1,3 +1,9 @@
+let latitude;
+let longitude;
+navigator.geolocation.getCurrentPosition(async function (position) {
+  latitude = await position.coords.latitude;
+  longitude = await position.coords.longitude;
+});
 function getUserBynum(id) {
   // Create a new XMLHttpRequest object
   var xhr = new XMLHttpRequest();
@@ -15,8 +21,6 @@ function getUserBynum(id) {
     if (xhr.status === 200) {
       // Successful response
       var responseData = xhr.responseText;
-
-      console.log(responseData);
       var jsonObject = eval("(" + responseData + ")");
       user = jsonObject;
       // console.log(parsedData);
@@ -78,4 +82,87 @@ if (userName != null) {
   for (let i = 0; i < workshops.length; i++) {
     createWorkshop(workshops[i], "workshops");
   }
+}
+const liveAddressButton = document.getElementById("liveAddress");
+if (liveAddressButton != null) {
+  liveAddressButton.addEventListener("click", () => {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        let add = getLiveLocation(latitude, longitude);
+        console.log(add);
+        const bookingCountry = document.getElementById("countryOption");
+        bookingCountry.value = add.country;
+        bookingCountry.innerText = add.country;
+
+        const bookingState = document.getElementById("stateOption");
+        bookingState.value = add.state;
+        bookingState.innerText = add.state;
+        const bookingCity = document.getElementById("cityOption");
+        bookingCity.value = add.city;
+        bookingCity.innerText = add.city;
+        const bookingAddress = document.getElementById("address");
+        bookingAddress.value = add.streetAddress;
+      },
+      function (error) {
+        // Handle errors, such as permission denied or unavailable location services
+        console.error("Error getting location: " + error.message);
+      }
+    );
+  });
+}
+
+const bookingForm = document.getElementById("liveBookingForm");
+if (bookingForm != null) {
+  bookingForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let existBooking = localStorage.getItem("livebookingId");
+    if (existBooking != null) {
+      alert("you have requested a service cancel it to create another");
+      window.location.href = "./customerActivity.html";
+    } else {
+      let country = document.getElementById("countries");
+      let state = document.getElementById("state");
+      let city = document.getElementById("district");
+      let address = document.getElementById("address");
+      let type = document.getElementById("vehicleType");
+      let company = document.getElementById("vehicleCompany");
+      let model = document.getElementById("vehicleModel");
+      let vehicleNumber = document.getElementById("vehicleNumber");
+      let vehicleYear = document.getElementById("vehicleYear");
+      let problem = document.getElementById("vehicleProblem");
+
+      let con = confirm("Confirm to search workshop near you ");
+      if (con) {
+        let vehicle = {
+          userId: localStorage.getItem("loginUserId"),
+          vehicleType: type.value,
+          vehicleNumber: vehicleNumber.value,
+          vehicleYear: vehicleYear.value,
+          vehicleCompany: company.value,
+          vehicleModel: model.value,
+        };
+        let id = createVehicleApi(vehicle);
+        let bookingData = {
+          bookedVehicleId: id,
+          problem: problem.value,
+          bookedCountry: country.value,
+          bookedState: state.value,
+          bookedAddress: address.value,
+          bookedCity: city.value,
+          bookedLatitude: latitude,
+          bookedLongitude: longitude,
+        };
+
+        console.log("booking", bookingData);
+        let bookingId = createBookingApi(bookingData);
+        localStorage.setItem("livebookingId", bookingId);
+        window.location.href = "./customerActivity.html";
+      } else {
+        return;
+      }
+    }
+  });
 }

@@ -27,6 +27,10 @@
       href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.css"
+    />
 
     <title>Customer Dashboard</title>
     <!-- <link rel="stylesheet" href="../../assets/css/admin.css" /> -->
@@ -102,27 +106,33 @@
         Don't fret, our expert mechanics fix your vehicle.
       </p>
       <h1>Please fill the details to contact you !</h1>
-      <form class="sectionForm" id="liveBooking">
+      <form class="sectionForm" id="liveBookingForm">
         <div class="form">
-          <h3>Enter Location and vehicle details</h3>
+          <h3>
+            Location & Vehicle Details
+            <button id="liveAddress">
+              <span class="material-symbols-outlined"> distance </span>Get
+              location
+            </button>
+          </h3>
           <div class="inputFeild">
             <h5>Select Country:</h5>
             <select name="Country" id="countries" required>
-              <option value="">Select Your country</option>
+              <option value="" id="countryOption">Select Your country</option>
             </select>
             <span class="material-symbols-outlined"> flag </span>
           </div>
           <div class="inputFeild">
             <h5>Select State:</h5>
             <select name="State" id="state" required>
-              <option value="">Select Your State</option>
+              <option value="" id="stateOption">Select Your State</option>
             </select>
             <span class="material-symbols-outlined"> domain </span>
           </div>
           <div class="inputFeild">
             <h5>Select District:</h5>
             <select name="district" id="district" required>
-              <option value="">Select Your district</option>
+              <option value="" id="cityOption">Select Your district</option>
             </select>
             <span class="material-symbols-outlined"> location_city </span>
           </div>
@@ -130,24 +140,20 @@
             <h4>Enter Address</h4>
             <input type="text" id="address" required />
           </div>
-          <!-- <button>
-            <span class="material-symbols-outlined"> distance </span>Get
-            location
-          </button> -->
-        </div>
-        <div class="form">
           <div class="inputFeild">
             <h5>Select vehicle :</h5>
             <select name="vehicle" required id="vehicleType">
               <option value="">Select Your vehicle</option>
-              <option value="2 wheelers">2 wheelers</option>
-              <option value="3 wheelers">3 wheelers</option>
-              <option value="4 wheelers">4 wheelers</option>
+              <option value="2">2 wheelers</option>
+              <option value="3">3 wheelers</option>
+              <option value="4">4 wheelers</option>
             </select>
             <span class="material-symbols-outlined">
               emoji_transportation
             </span>
           </div>
+        </div>
+        <div class="form">
           <div class="inputFeild">
             <h5>Select company:</h5>
             <select name="company" required id="vehicleCompany">
@@ -166,13 +172,20 @@
               emoji_transportation
             </span>
           </div>
-          <!-- <div class="inputFeild">
-            <h5>Enter Vehicle number:</h5>
+          <div class="inputFeild">
+            <h5>Vehicle number :</h5>
             <input type="text" required id="vehicleNumber" />
             <span class="material-symbols-outlined">
               emoji_transportation
             </span>
-          </div> -->
+          </div>
+          <div class="inputFeild">
+            <h5>Vehicle Year :</h5>
+            <input type="text" required id="vehicleYear" />
+            <span class="material-symbols-outlined">
+              emoji_transportation
+            </span>
+          </div>
           <div class="inputAddressFeild">
             <h4>Describe your problem</h4>
             <input type="text" required id="vehicleProblem" />
@@ -274,7 +287,9 @@
         </div>
       </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"></script>
+    <script src="../../assets/javascript/validationsApi.js"></script>
+    <script src="../../assets/javascript/customerBookingApi.js"></script>
     <script src="../../assets/javascript/customerApiFunctions.js"></script>
     <script src="../../assets/javascript/customerApi.js"></script>
 
@@ -282,7 +297,6 @@
     <script src="../../assets/javascript/customerBuildInFunction.js"></script>
     <script src="../../assets/javascript/customer_function.js"></script>
     <script src="../../assets/javascript/buildedfunction.js"></script>
-    <script type="module" src="../../assets/javascript/livebooking.js"></script>
     <script src="../../assets/javascript/customer.js"></script>
   </body>
 </html>

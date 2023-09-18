@@ -73,3 +73,39 @@ function openView(obj) {
   const workshopCard = document.getElementById("workshopCard");
   workshopCard.style.display = "flex";
 }
+//get live location
+function getLiveLocation(latitude, longitude) {
+  let address = {};
+  const apiUrl = `https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}`;
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", apiUrl, false);
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        try {
+          const data = JSON.parse(xhr.responseText);
+          const arr = data["display_name"].split(",");
+          address = {
+            streetAddress: "",
+            city: arr[arr.length - 4].trim(),
+            state: arr[arr.length - 3].trim(),
+            country: arr[arr.length - 1].trim(),
+          };
+          for (let i = 0; i < arr.length - 4; i++) {
+            address["streetAddress"] += arr[i] + ",";
+          }
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+        }
+      } else {
+        console.error("Request failed with status:", xhr.status);
+      }
+    }
+  };
+
+  xhr.send();
+
+  return address;
+}

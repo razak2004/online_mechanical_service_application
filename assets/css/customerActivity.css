@@ -1,0 +1,128 @@
+:root {
+  --red: #fe3044;
+  --white: rgba(237, 237, 237, 0.806);
+  --cyan: #17a2b8;
+  --info: #17a2b8;
+  --teal: #20c997;
+}
+body {
+  background-color: var(--white);
+}
+.waitingCard {
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  gap: 1%;
+  border: 1px solid black;
+}
+
+.sectionDiv {
+  width: 80%;
+  display: flex;
+  gap: 5%;
+  margin-left: 280px;
+  align-content: center;
+}
+.sectionDiv img {
+  width: 250px;
+  height: 250px;
+  margin-top: -80px;
+}
+.workshopContain {
+  width: 600px;
+  height: 700px;
+  border: none;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+  align-items: center;
+}
+.workshop {
+  width: 80%;
+  height: 160px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 2%;
+
+  border: 1px solid black;
+  animation-name: example;
+  animation-duration: 2s;
+}
+@keyframes example {
+  0% {
+    transform: translateY(300px);
+  }
+}
+.workshop i {
+  font-size: 120px;
+}
+.workshop .detail {
+  width: 58%;
+  height: 90%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: black;
+}
+.info {
+  width: 96%;
+  height: 40px;
+  background-color: white;
+  border-radius: 20px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 3%;
+  padding-left: 3px;
+}
+.workshop .btn {
+  width: 80px;
+  border-radius: 20px;
+  height: 90%;
+  gap: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+}
+.workshop .btn a,
+span {
+  text-decoration: none;
+  color: black;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  background-color: var(--teal);
+  border: 2px solid black;
+
+  border-radius: 20px;
+}
+.btn span {
+  background-color: black;
+  color: white;
+  height: 40px;
+  display: flex;
+}
+.btn a:hover {
+  background-color: black;
+  color: white;
+}
+#cancelButton {
+  height: 50px;
+  margin-bottom: -50px;
+  border: 2px solid black;
+}

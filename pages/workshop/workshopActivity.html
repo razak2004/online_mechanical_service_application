@@ -31,6 +31,7 @@
     <title>Work shopDashboard</title>
     <!-- <link rel="stylesheet" href="../../assets/css/admin.css" /> -->
     <link rel="stylesheet" href="../../assets/css/workShop.css" />
+    <link rel="stylesheet" href="../../assets/css/workshopActivity.css" />
   </head>
 
   <body>
@@ -54,12 +55,6 @@
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="material-symbols-outlined"> shopping_cart </i>
-            <p>Our Products</p>
-          </a>
-        </li>
-        <li>
           <a href="./workshopProfile.html">
             <i class="material-symbols-outlined"> account_circle </i>
             <p>Profile</p>
@@ -77,19 +72,6 @@
             <p>Settings</p>
           </a>
         </li>
-        <!-- <li>
-          <a onclick="delUser()">
-            <i class="material-symbols-outlined"> delete </i>
-            <div>Delete Account</div>
-          </a>
-        </li> -->
-
-        <!-- <li>
-          <a href="#">
-            <i class="material-symbols-outlined"> contact_support </i>
-            <div>Help</div>
-          </a>
-        </li> -->
         <li>
           <a href="../../index.html">
             <i class="material-symbols-outlined"> logout </i>
@@ -98,5 +80,36 @@
         </li>
       </ul>
     </nav>
+    <section>
+      <h2 id="headBooking">Live Bookings</h2>
+      <div id="otpDiv"></div>
+      <div class="serviceDetail">
+        <h4>Service List</h4>
+        <div class="serviceLists">
+          <div class="service">
+            <span class="material-symbols-outlined"> settings </span>
+            <p>service name</p>
+            <h3>
+              <span class="material-symbols-outlined"> currency_rupee </span>
+              200
+            </h3>
+            <i class="material-symbols-outlined"> edit </i>
+            <i class="material-symbols-outlined" style="color: #fe3044">
+              delete
+            </i>
+          </div>
+        </div>
+        <div class="btnContainer">
+          <button>
+            <span class="material-symbols-outlined"> add_task </span>Add Service
+          </button>
+          <p>Total : <span id="Total"></span></p>
+        </div>
+      </div>
+
+      <div class="bookingContainer" id="bookingContainer"></div>
+    </section>
+    <script src="../../assets/javascript/workshopApiFunction.js"></script>
+    <script src="../../assets/javascript/workshopApi.js"></script>
   </body>
 </html>

@@ -93,16 +93,6 @@ if (liveAddressButton != null) {
 
         let add = getLiveLocation(latitude, longitude);
         console.log(add);
-        const bookingCountry = document.getElementById("countryOption");
-        bookingCountry.value = add.country;
-        bookingCountry.innerText = add.country;
-
-        const bookingState = document.getElementById("stateOption");
-        bookingState.value = add.state;
-        bookingState.innerText = add.state;
-        const bookingCity = document.getElementById("cityOption");
-        bookingCity.value = add.city;
-        bookingCity.innerText = add.city;
         const bookingAddress = document.getElementById("address");
         bookingAddress.value = add.streetAddress;
       },
@@ -157,9 +147,13 @@ if (bookingForm != null) {
         };
 
         console.log("booking", bookingData);
-        let bookingId = createBookingApi(bookingData);
-        localStorage.setItem("livebookingId", bookingId);
-        window.location.href = "./customerActivity.html";
+        try {
+          let bookingId = createBookingApi(bookingData);
+          localStorage.setItem("livebookingId", bookingId);
+          window.location.href = "./customerActivity.html";
+        } catch (error) {
+          alert(error);
+        }
       } else {
         return;
       }

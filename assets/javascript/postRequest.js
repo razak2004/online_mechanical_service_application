@@ -6,9 +6,7 @@ function isNumber(str) {
 let id;
 let userRes = {};
 function addUser(data) {
-  const url = "http://localhost:8080/user/createUser"; // Replace with your Spring Boot backend URL
-
-  // Data to send in the request body
+  const url = "http://localhost:8080/user/createUser";
 
   // Create a new XMLHttpRequest object
   const xhr = new XMLHttpRequest();
@@ -16,7 +14,7 @@ function addUser(data) {
 
   // Configure the request
   xhr.open("POST", url, false);
-  xhr.setRequestHeader("Content-Type", "application/json"); // Set the content type to JSON
+  xhr.setRequestHeader("Content-Type", "application/json");
 
   // Define a callback function to handle the response
   xhr.onload = function () {
@@ -64,9 +62,8 @@ function getUserBynum(num) {
       // Successful response
       var responseData = xhr.responseText;
 
-      console.log(responseData);
       // You can parse the response as JSON if it's JSON data
-      alert(responseData);
+
       var jsonObject = eval("(" + responseData + ")");
       user = jsonObject;
       // console.log(parsedData);
@@ -142,6 +139,7 @@ if (signUpForm != null) {
       role: 2,
     };
     addUser(data);
+
     openDiv("#loginForm", "#signUpForm");
   });
 }

@@ -14,8 +14,6 @@ function loginPostMethod(data) {
     if (xhr.status === 200) {
       // Successful response
       const response = xhr.responseText;
-      alert(response);
-      console.log(response);
       user = eval("(" + response + ")");
       localStorage.setItem("loginUserId", user.id);
     } else {

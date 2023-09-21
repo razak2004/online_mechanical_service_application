@@ -374,7 +374,7 @@ function createServiceDiv(obj, id) {
 
   // Create a paragraph element for the service name
   const serviceName = document.createElement("p");
-  serviceName.textContent = "service name";
+  serviceName.textContent = obj["serviceName"];
 
   // Create an h3 element for the currency and amount
   const currencyIcon = document.createElement("span");
@@ -383,7 +383,7 @@ function createServiceDiv(obj, id) {
 
   const amount = document.createElement("h3");
   amount.appendChild(currencyIcon);
-  amount.appendChild(document.createTextNode("200"));
+  amount.appendChild(document.createTextNode(obj["servicePrice"]));
 
   // Create two "i" elements for the "edit" and "delete" icons
   const editIcon = document.createElement("i");
@@ -404,4 +404,118 @@ function createServiceDiv(obj, id) {
 
   // Append the serviceDiv to the document body or another container element
   document.querySelector(id).appendChild(serviceDiv);
+}
+function getServiceList(bookingId) {
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Define the URL for your Spring Boot GET endpoint
+  var url =
+    "http://localhost:8080/service/getServiceListByBookingId?bookingId=" +
+    bookingId;
+  let service = {};
+  // Configure the request
+  xhr.open("GET", url, false);
+
+  // Set up a callback function to handle the response
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Successful response
+      var responseData = xhr.responseText;
+
+      service = JSON.parse(responseData);
+      // console.log(parsedData);
+    } else {
+      // Error response
+      console.error("Error:", xhr.statusText);
+    }
+  };
+
+  // Set up a callback function to handle network errors
+  xhr.onerror = function () {
+    console.error("Network error occurred");
+  };
+
+  // Send the GET request
+  xhr.send();
+  return service;
+}
+
+function createServiceApi(obj) {
+  {
+    const url = "http://localhost:8080/service/createService";
+
+    // Create a new XMLHttpRequest object
+    const xhr = new XMLHttpRequest();
+    let id = "";
+
+    // Configure the request
+    xhr.open("POST", url, false);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    // Define a callback function to handle the response
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Successful response
+        const response = xhr.responseText;
+        id = response;
+      } else {
+        // Error response
+        console.error("Error:", xhr.statusText);
+        alert(error);
+      }
+    };
+
+    // Define a callback function to handle network errors
+    xhr.onerror = function () {
+      console.error("Network error occurred");
+    };
+
+    // Send the POST request with the JSON data
+    xhr.send(JSON.stringify(obj));
+    return id;
+  }
+}
+
+function stringValidation(str, strName) {
+  const regex = /^[a-zA-Z ]+$/;
+  if (!regex.test(str) || str == "") {
+    Notify.error(
+      strName +
+        " can't be null or does not contains numbers and special characters "
+    );
+  }
+  return regex.test(str);
+}
+function priceValidation(num) {
+  if (isNaN(num))
+    Notify.error(
+      "Alphabets and special characters or not acceptable for price"
+    );
+  if (num < 0) Notify.error("price Cant be less than 0");
+  if (num > 9999) Notify.error("price Cant be more  than 10000");
+  return num > 0 && num < 10000;
+}
+
+function openCreateServiceForm() {
+  const serviceForm = document.getElementById("createServiceForm");
+  serviceForm.style.display = "flex";
+  const listForm = document.getElementById("serviceDetailDiv");
+  listForm.style.display = "none";
+  serviceForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.querySelector("#serviceName");
+    const price = document.querySelector("#servicePrice");
+    let chk = stringValidation(name.value, "service name");
+    let pri = priceValidation(price.value);
+    if (chk && pri) {
+      alert("success");
+    }
+  });
+}
+function closeCreateServiceForm() {
+  const serviceForm = document.getElementById("createServiceForm");
+  serviceForm.style.display = "none";
+  const listForm = document.getElementById("serviceDetailDiv");
+  listForm.style.display = "flex";
 }

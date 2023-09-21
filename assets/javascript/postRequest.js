@@ -32,6 +32,7 @@ function addUser(data) {
     } else {
       // Error response
       console.error("Error:", xhr.statusText);
+      alert(error);
     }
   };
 

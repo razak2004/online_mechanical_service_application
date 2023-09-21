@@ -9,7 +9,17 @@ if (userId != null) {
     if (booking["otp"] != 0) {
       createOtpCard("#otpDiv", booking);
     } else {
-      createServiceDiv(null, ".serviceLists");
+      //
+      let serv = getServiceList(booking["bookingId"]);
+      //  for(let obj :serv.)
+      console.log(serv);
+      const serviceDiv = document.getElementById("serviceDetailDiv");
+      serviceDiv.style.display = "flex";
+      document.getElementById("Total").innerText = serv["serviceAmount"];
+      let arr = serv["listOfServices"];
+      for (let i = 0; i < arr.length; i++) {
+        createServiceDiv(arr[i], ".serviceLists");
+      }
     }
   } else {
     let bookings = getUnAcceptedBooking(user.workshopId);

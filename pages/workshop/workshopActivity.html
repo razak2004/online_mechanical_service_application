@@ -27,6 +27,10 @@
       href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.css"
+    />
 
     <title>Work shopDashboard</title>
     <!-- <link rel="stylesheet" href="../../assets/css/admin.css" /> -->
@@ -81,34 +85,59 @@
       </ul>
     </nav>
     <section>
-      <h2 id="headBooking">Live Bookings</h2>
+      <h2 id="headBooking"></h2>
       <div id="otpDiv"></div>
-      <div class="serviceDetail">
-        <h4>Service List</h4>
-        <div class="serviceLists">
-          <div class="service">
-            <span class="material-symbols-outlined"> settings </span>
-            <p>service name</p>
-            <h3>
-              <span class="material-symbols-outlined"> currency_rupee </span>
-              200
-            </h3>
-            <i class="material-symbols-outlined"> edit </i>
-            <i class="material-symbols-outlined" style="color: #fe3044">
-              delete
-            </i>
-          </div>
-        </div>
+      <div class="serviceDetail" id="serviceDetailDiv" style="display: none">
+        <h4>Service List <button>Cancel Booking</button></h4>
+        <div class="serviceLists"></div>
         <div class="btnContainer">
-          <button>
+          <button onclick="openCreateServiceForm()">
             <span class="material-symbols-outlined"> add_task </span>Add Service
           </button>
           <p>Total : <span id="Total"></span></p>
         </div>
+
+        <button id="sendButton">
+          <span class="material-symbols-outlined"> rocket_launch </span> Send to
+          Customer
+        </button>
       </div>
+      <form id="createServiceForm" style="display: none">
+        <h4>
+          <span
+            onclick="closeCreateServiceForm()"
+            class="material-symbols-outlined"
+          >
+            text_select_jump_to_beginning </span
+          >Add Service
+        </h4>
+        <div class="info">
+          <span class="material-symbols-outlined"> settings </span>
+          <input
+            type="text"
+            required
+            id="serviceName"
+            placeholder="ServiceName"
+          />
+        </div>
+        <div class="info">
+          <span class="material-symbols-outlined"> currency_rupee </span>
+          <input
+            type="text"
+            required
+            id="servicePrice"
+            placeholder="Service Price"
+          />
+        </div>
+        <button type="submit">
+          <span class="material-symbols-outlined"> library_add </span> Add
+          Service
+        </button>
+      </form>
 
       <div class="bookingContainer" id="bookingContainer"></div>
     </section>
+    <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"></script>
     <script src="../../assets/javascript/workshopApiFunction.js"></script>
     <script src="../../assets/javascript/workshopApi.js"></script>
   </body>

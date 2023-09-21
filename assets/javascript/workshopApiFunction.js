@@ -497,19 +497,20 @@ function priceValidation(num) {
   return num > 0 && num < 10000;
 }
 
-function openCreateServiceForm() {
+function openCreateServiceForm(listId) {
   const serviceForm = document.getElementById("createServiceForm");
   serviceForm.style.display = "flex";
   const listForm = document.getElementById("serviceDetailDiv");
   listForm.style.display = "none";
   serviceForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const name = document.querySelector("#serviceName");
-    const price = document.querySelector("#servicePrice");
-    let chk = stringValidation(name.value, "service name");
-    let pri = priceValidation(price.value);
+    const name = document.querySelector("#serviceName").value;
+    const price = document.querySelector("#servicePrice").value;
+
+    let chk = stringValidation(name, "service name");
+    let pri = priceValidation(price);
     if (chk && pri) {
-      alert("success");
+      let obj = { serviceName: name, servicePrice: price };
     }
   });
 }

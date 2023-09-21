@@ -389,11 +389,21 @@ function createServiceDiv(obj, id) {
   const editIcon = document.createElement("i");
   editIcon.classList.add("material-symbols-outlined");
   editIcon.textContent = " edit ";
+  editIcon.addEventListener("click", () => {
+    createUpdateServiceForm(obj);
+  });
 
   const deleteIcon = document.createElement("i");
+
   deleteIcon.classList.add("material-symbols-outlined");
   deleteIcon.style.color = "#fe3044";
   deleteIcon.textContent = " delete ";
+
+  deleteIcon.addEventListener("click", () => {
+    // alert("chk");
+    deleteServiceApi(obj["serviceId"]);
+    window.location.reload();
+  });
 
   // Append all elements to the serviceDiv
   serviceDiv.appendChild(settingsIcon);
@@ -476,6 +486,70 @@ function createServiceApi(obj) {
     return id;
   }
 }
+function updateServiceApi(obj) {
+  const url = "http://localhost:8080/service/updateService";
+
+  // Create a new XMLHttpRequest object
+  const xhr = new XMLHttpRequest();
+  let id = "";
+
+  // Configure the request
+  xhr.open("POST", url, false);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  // Define a callback function to handle the response
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Successful response
+      const response = xhr.responseText;
+      id = response;
+    } else {
+      // Error response
+      console.error("Error:", xhr.statusText);
+      alert(error);
+    }
+  };
+
+  // Define a callback function to handle network errors
+  xhr.onerror = function () {
+    console.error("Network error occurred");
+  };
+
+  // Send the POST request with the JSON data
+  xhr.send(JSON.stringify(obj));
+  return id;
+}
+function deleteServiceApi(id) {
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Define the URL for your Spring Boot GET endpoint
+  var url = "http://localhost:8080/service/deleteService?serviceId=" + id; // Replace with your actual endpoint URL
+  let chk = "";
+
+  // Configure the request
+  xhr.open("GET", url, false);
+
+  // Set up a callback function to handle the response
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Successful response
+      chk = xhr.responseText;
+    } else {
+      // Error response
+      console.error("Error:", xhr.statusText);
+    }
+  };
+
+  // Set up a callback function to handle network errors
+  xhr.onerror = function () {
+    console.error("Network error occurred");
+  };
+
+  // Send the GET request
+  xhr.send();
+  return chk;
+}
 
 function stringValidation(str, strName) {
   const regex = /^[a-zA-Z ]+$/;
@@ -510,7 +584,13 @@ function openCreateServiceForm(listId) {
     let chk = stringValidation(name, "service name");
     let pri = priceValidation(price);
     if (chk && pri) {
-      let obj = { serviceName: name, servicePrice: price };
+      let obj = {
+        serviceName: name,
+        servicePrice: price,
+        serviceListId: listId,
+      };
+      let id = createServiceApi(obj);
+      window.location.reload();
     }
   });
 }
@@ -519,4 +599,82 @@ function closeCreateServiceForm() {
   serviceForm.style.display = "none";
   const listForm = document.getElementById("serviceDetailDiv");
   listForm.style.display = "flex";
+}
+
+function createUpdateServiceForm(obj) {
+  document.getElementById("serviceDetailDiv").style.display = "none";
+  // Create the form element
+  var createServiceForm = document.createElement("form");
+  createServiceForm.id = "createServiceForm";
+
+  // Create the h4 element
+  var h4 = document.createElement("h4");
+  h4.innerHTML =
+    '<span  class="material-symbols-outlined">text_select_jump_to_beginning</span>edit Service';
+
+  // Create the first div element with input for service name
+  var div1 = document.createElement("div");
+  div1.className = "info";
+  var span1 = document.createElement("span");
+  span1.className = "material-symbols-outlined";
+  span1.textContent = "settings";
+  var input1 = document.createElement("input");
+  input1.type = "text";
+  input1.required = true;
+  input1.id = "serviceName";
+  input1.value = obj["serviceName"];
+  div1.appendChild(span1);
+  div1.appendChild(input1);
+
+  // Create the second div element with input for service price
+  var div2 = document.createElement("div");
+  div2.className = "info";
+  var span2 = document.createElement("span");
+  span2.className = "material-symbols-outlined";
+  span2.textContent = "currency_rupee";
+  var input2 = document.createElement("input");
+  input2.type = "text";
+  input2.required = true;
+  input2.id = "servicePrice";
+  input2.value = obj["servicePrice"];
+  div2.appendChild(span2);
+  div2.appendChild(input2);
+
+  // Create the submit button
+  var submitButton = document.createElement("button");
+  submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    let serviceName = input1.value;
+    let servicePrice = input2.value;
+    let chk1 = stringValidation(serviceName, "serviceName");
+    let chk2 = priceValidation(servicePrice);
+    if (chk1 && chk2) {
+      let obj1 = {
+        serviceName,
+        servicePrice,
+        serviceId: obj["serviceId"],
+        serviceListId: obj["serviceListId"],
+      };
+      let id = updateServiceApi(obj1);
+      if (!isNaN(id)) {
+        window.location.reload();
+      }
+    }
+  });
+  submitButton.type = "submit";
+  var span3 = document.createElement("span");
+  span3.className = "material-symbols-outlined";
+  span3.textContent = "edit";
+  submitButton.appendChild(span3);
+  submitButton.appendChild(document.createTextNode("edit Service"));
+
+  // Append all elements to the form
+  createServiceForm.appendChild(h4);
+  createServiceForm.appendChild(div1);
+  createServiceForm.appendChild(div2);
+  createServiceForm.appendChild(submitButton);
+
+  // Append the form to the document body or another desired location
+  document.getElementById("otpDiv").appendChild(createServiceForm);
 }

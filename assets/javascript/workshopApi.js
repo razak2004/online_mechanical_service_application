@@ -16,6 +16,10 @@ if (userId != null) {
       const serviceDiv = document.getElementById("serviceDetailDiv");
       serviceDiv.style.display = "flex";
       document.getElementById("Total").innerText = serv["serviceAmount"];
+      const addserviceButton = document.getElementById("addserviceButtom");
+      addserviceButton.addEventListener("click", () => {
+        openCreateServiceForm(serv["listId"]);
+      });
       let arr = serv["listOfServices"];
       for (let i = 0; i < arr.length; i++) {
         createServiceDiv(arr[i], ".serviceLists");

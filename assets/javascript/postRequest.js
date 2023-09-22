@@ -3,6 +3,34 @@ function isNumber(str) {
   // isNaN() returns true for strings that cannot be converted to numbers
   return !isNaN(str);
 }
+function stringValidation(str, strName) {
+  const regex = /^[a-zA-Z ]+$/;
+  if (!regex.test(str) || str == "") {
+    Notify.error(
+      strName +
+        " can't be null or does not contains numbers and special characters "
+    );
+  }
+  return regex.test(str);
+}
+function phoneNumberValidation(num) {
+  const numRegex = /^[0-9]{10}$/;
+  if (!numRegex.test(num) || num == "") {
+    Notify.error(
+      "phone Number cant contain Alphabet or contain only 10 digits"
+    );
+  }
+  return numRegex.test(num);
+}
+//
+function passwordValidation(pass) {
+  const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/;
+  if (!passRegex.test(pass) || pass == "") {
+    Notify.error("password Must be in Alphanumeric Character");
+  }
+  return passRegex.test(pass);
+}
+
 let id;
 let userRes = {};
 function addUser(data) {
@@ -122,6 +150,19 @@ function addWorkshop(data, userId) {
   return id;
 }
 
+const signLoginBtn = document.getElementById("signLoginBtn");
+if (signLoginBtn != null) {
+  signLoginBtn.addEventListener("click", () => {
+    openDiv("#loginForm", "#signUpForm");
+  });
+}
+const loginsignBtn = document.getElementById("LoginSignBtn");
+if (loginsignBtn != null) {
+  loginsignBtn.addEventListener("click", () => {
+    openDiv("#signUpForm", "#loginForm");
+  });
+}
+
 // user registration form
 const signUpForm = document.getElementById("signUpForm");
 // signUp form
@@ -132,16 +173,29 @@ if (signUpForm != null) {
     let number = document.getElementById("number").value;
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
-    if (password != confirmPassword) alert("Confirm passwords is not matching");
-    let data = {
-      name,
-      number,
-      password,
-      role: 2,
-    };
-    addUser(data);
+    if (password != confirmPassword) {
+      Notify.error("pasword not matching");
+      return;
+    }
 
-    openDiv("#loginForm", "#signUpForm");
+    let nameValid = stringValidation(name, "name");
+    let numberValid = phoneNumberValidation(number);
+    let passwordValid = passwordValidation(password);
+
+    if (nameValid && numberValid & passwordValid) {
+      let data = {
+        name,
+        number,
+        password,
+        role: 2,
+      };
+      let id = addUser(data);
+      if (isNumber(id)) {
+        openDiv("#loginForm", "#signUpForm");
+      } else {
+        return;
+      }
+    }
   });
 }
 
@@ -161,21 +215,35 @@ if (numberForm != null) {
       return;
     }
 
-    let user = {
-      name,
-      number,
-      password,
-      role: 3,
-    };
+    let nameValid = stringValidation(name, "name");
+    let numberValid = phoneNumberValidation(number);
+    let passwordValid = passwordValidation(password);
 
-    id = await addUser(user); // Add 'await' here
-    userRes = await getUserBynum(user.number);
-    openDiv("#workshopForm", "#numberForm");
+    if (nameValid && numberValid & passwordValid) {
+      let user = {
+        name,
+        number,
+        password,
+        role: 3,
+      };
 
-    const stName = document.getElementById("ownerName");
-    stName.value = userRes.name;
-    const stNum = document.getElementById("ownerNumber");
-    stNum.value = userRes.number;
+      id = await addUser(user);
+      if (isNumber(id)) {
+        userRes = await getUserBynum(user.number);
+        openDiv("#workshopForm", "#numberForm");
+
+        const stName = document.getElementById("ownerName");
+        stName.value = userRes.name;
+        const stNum = document.getElementById("ownerNumber");
+        stNum.value = userRes.number;
+      } else {
+        const sign = document.getElementById("numberForm");
+        sign.style.display = "none";
+
+        document.getElementById("workshopLoginForm").style.display = "flex";
+      }
+    }
+    // let passwordValid = ;
   });
 }
 

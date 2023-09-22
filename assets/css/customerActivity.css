@@ -126,3 +126,42 @@ span {
   margin-bottom: -50px;
   border: 2px solid black;
 }
+#otpCard {
+  width: 330px;
+  margin-top: 40px;
+  border-radius: 30px;
+  border: 2px solid black;
+  height: 450px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1%;
+  justify-content: flex-start;
+}
+#otpCard h5 {
+  font-size: 40px;
+  margin-top: -10px;
+}
+#otpCard a {
+  width: 90%;
+  height: 60px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  gap: 5%;
+}
+#otpCard i {
+  font-size: 30px;
+}
+#otpCard a:hover {
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+}

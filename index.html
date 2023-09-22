@@ -73,7 +73,7 @@
             id="name"
             pattern="[A-Za-z ]{3,20}"
             placeholder="Enter your Name "
-            value="gowtham"
+            value=""
           />
         </div>
         <div class="inputContainer">
@@ -82,7 +82,7 @@
             required
             type="text"
             name=""
-            value="9566267326"
+            value=""
             id="number"
             pattern="[0-9]{10}"
             placeholder="Enter your Number "
@@ -94,7 +94,7 @@
             required
             type="password"
             name=""
-            value="1234"
+            value=""
             id="password"
             pattern="[A-Za-z0-9]{3,6}"
             placeholder="Enter a password
@@ -108,7 +108,7 @@
             pattern="[A-Za-z0-9]{3,6}"
             type="password"
             name=""
-            value="1234"
+            value=""
             id="confirmPassword"
             placeholder="Confirm  password "
           />
@@ -116,7 +116,9 @@
 
         <button type="submit">Create Accout</button>
         <h4>Already have an account ?</h4>
-        <h5><span class="material-symbols-outlined"> api </span>login here</h5>
+        <h5 id="signLoginBtn">
+          <span class="material-symbols-outlined"> api </span>login here
+        </h5>
       </form>
       <form action="" id="otpVerify">
         <h1>Number Verification</h1>
@@ -172,9 +174,8 @@
           />
         </div>
         <button type="submit">Login</button>
-        <h4>Forget your password ?</h4>
-        <h4>login with</h4>
-        <h5>OTP</h5>
+        <h4>Don't have an account</h4>
+        <h5 id="LoginSignBtn">Sign up here</h5>
       </form>
       <div class="hero_left">
         <div class="upper">

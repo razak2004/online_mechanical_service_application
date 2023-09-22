@@ -14,8 +14,13 @@ function loginPostMethod(data) {
     if (xhr.status === 200) {
       // Successful response
       const response = xhr.responseText;
-      user = eval("(" + response + ")");
-      localStorage.setItem("loginUserId", user.id);
+      try {
+        user = eval("(" + response + ")");
+        localStorage.setItem("loginUserId", user.id);
+      } catch (error) {
+        Notify.error(response);
+        user = response;
+      }
     } else {
       // Error response
       console.error("Error:", xhr.statusText);
@@ -38,14 +43,21 @@ if (workshopLoginForm != null) {
     e.preventDefault();
     let number = document.getElementById("loginNumber").value;
     let password = document.getElementById("loginPassword").value;
-    let user = await loginPostMethod({ number, password });
-
-    if (user.role == 3) {
-      window.location.href = "./workshop/workshop.html";
-    }
-    if (user.role == 2) {
-      window.location.href = "./Customer/cust.html";
-    }
+    let numberValid = phoneNumberValidation(number);
+    let passwordValid = passwordValidation(password);
+    if (numberValid && passwordValid) {
+      let user = await loginPostMethod({ number, password });
+      if (user.role != undefined) {
+        if (user.role == 3) {
+          alert(user.name + " successfully logged in");
+          window.location.href = "./workshop/workshop.html";
+        }
+        if (user.role == 2) {
+          alert(user.name + " successfully logged in");
+          window.location.href = "./Customer/cust.html";
+        }
+      }
+    } else return;
   });
 }
 const loginForm = document.getElementById("loginForm");
@@ -54,13 +66,20 @@ if (loginForm != null) {
     e.preventDefault();
     let number = document.getElementById("loginNumber").value;
     let password = document.getElementById("loginPassword").value;
-    let user = await loginPostMethod({ number, password });
-
-    if (user.role == 3) {
-      window.location.href = "./pages/workshop/workshop.html";
-    }
-    if (user.role == 2) {
-      window.location.href = "./pages/Customer/cust.html";
-    }
+    let numberValid = phoneNumberValidation(number);
+    let passwordValid = passwordValidation(password);
+    if (numberValid && passwordValid) {
+      let user = await loginPostMethod({ number, password });
+      if (user.role != undefined) {
+        if (user.role == 3) {
+          alert(user.name + " successfully logged in");
+          window.location.href = "./pages/workshop/workshop.html";
+        }
+        if (user.role == 2) {
+          alert(user.name + " successfully logged in");
+          window.location.href = "./pages/Customer/cust.html";
+        }
+      }
+    } else return;
   });
 }

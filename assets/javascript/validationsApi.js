@@ -11,6 +11,37 @@ function validateVehicleNumber(vehicleNumber) {
     return false; // Invalid vehicle number
   }
 }
+function vehicleYearValidation(year) {
+  if (year > 2023) {
+    Notify.error("Year cant be in future");
+    return false;
+  }
+  if (isNaN(year)) {
+    Notify.error("Year should not have Alaphabets ");
+    return false;
+  }
+  if (year < 1900) {
+    Notify.error("Year cant be less than 1900");
+    return false;
+  }
+  return true;
+}
+function problemValidation(str) {
+  const regex = /^[a-zA-Z ]+$/;
+  if (!regex.test(str) || str == "") {
+    Notify.error("problem Should not contain numbers");
+  }
+  return regex.test(str);
+}
+function addressValidation(str) {
+  const regex = /^[a-zA-Z0-9\s.,'#\-]+(\s[A-Za-z0-9\-#]+)?$/;
+  if (!regex.test(str) || str == "") {
+    Notify.error(
+      "Address Should not contain any special character except (,) "
+    );
+  }
+  return regex.test(str);
+}
 
 const vehicleNumber = document.getElementById("vehicleNumber");
 if (vehicleNumber != null) {

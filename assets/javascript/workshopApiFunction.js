@@ -147,6 +147,13 @@ function createBookingCard(obj, id, workshopId) {
   const rejectButton = document.createElement("button");
   rejectButton.id = "cancelButton";
   rejectButton.textContent = "Reject";
+  rejectButton.addEventListener("click", () => {
+    let con = confirm("Are you sure to cancel this Booking");
+    if (con) {
+      let s = cancelBooking(obj["bookingId"], "workshop");
+      // localStorage.removeItem("")
+    }
+  });
   actionBtnContainer.appendChild(rejectButton);
 
   // Append the button container for "Accept" and "Reject" buttons to the main card
@@ -205,6 +212,7 @@ function acceptBooking(workshopId, bookingId) {
 
     xhr.send(JSON.stringify(data));
     localStorage.setItem("liveAcceptedBookingId", booking["bookingId"]);
+    window.location.reload();
   } else return;
 }
 function getBookingByIdApi(id) {
@@ -252,6 +260,13 @@ function createOtpCard(tag, obj) {
   // Create the "Cancel Booking" button
   const cancelButton = document.createElement("button");
   cancelButton.textContent = "Cancel Booking";
+  cancelButton.addEventListener("click", () => {
+    let con = confirm("Are you sure to cancel this Booking");
+    if (con) {
+      let s = cancelBooking(obj["bookingId"], "workshop");
+      // localStorage.removeItem("")
+    }
+  });
 
   // Append the button to the heading
   heading.appendChild(cancelButton);
@@ -677,4 +692,42 @@ function createUpdateServiceForm(obj) {
 
   // Append the form to the document body or another desired location
   document.getElementById("otpDiv").appendChild(createServiceForm);
+}
+function cancelBooking(id, user) {
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+  let chk;
+
+  // Define the URL for your Spring Boot GET endpoint
+  var url =
+    "http://localhost:8080/booking/cancelBooking?bookingId=" +
+    id +
+    "&user=" +
+    user;
+  // Configure the request
+  xhr.open("GET", url, false);
+
+  // Set up a callback function to handle the response
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Successful response
+      chk = xhr.responseText;
+
+      // console.log(parsedData);
+    } else {
+      // Error response
+      console.error("Error:", xhr.statusText);
+    }
+  };
+
+  // Set up a callback function to handle network errors
+  xhr.onerror = function () {
+    console.error("Network error occurred");
+  };
+
+  // Send the GET request
+  xhr.send();
+  localStorage.removeItem("liveAcceptedBookingId");
+  window.location.reload();
+  return chk;
 }

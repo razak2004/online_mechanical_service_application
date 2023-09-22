@@ -15,10 +15,19 @@ if (userId != null) {
       console.log(serv);
       const serviceDiv = document.getElementById("serviceDetailDiv");
       serviceDiv.style.display = "flex";
+
       document.getElementById("Total").innerText = serv["serviceAmount"];
       const addserviceButton = document.getElementById("addserviceButtom");
       addserviceButton.addEventListener("click", () => {
         openCreateServiceForm(serv["listId"]);
+      });
+      const cancelButton = document.getElementById("cancelButton");
+      cancelButton.addEventListener("click", () => {
+        let con = confirm("Are you sure to cancel this Booking");
+        if (con) {
+          let s = cancelBooking(booking["bookingId"], "workshop");
+          // localStorage.removeItem("")
+        }
       });
       let arr = serv["listOfServices"];
       for (let i = 0; i < arr.length; i++) {
@@ -29,8 +38,8 @@ if (userId != null) {
     let bookings = getUnAcceptedBooking(user.workshopId);
     bookings.sort((a, b) => a.distance - b.distance);
     if (bookings.length != 0) {
-      for (let i = 0; i < 3; i++) {
-        if (!bookings[i].acceptStatus) {
+      for (let i = 0; i < bookings.length && i < 3; i++) {
+        if (bookings[i]["live"]) {
           createBookingCard(
             bookings[i],
             "bookingContainer",

@@ -108,45 +108,6 @@ stateArr.addEventListener("change", async () => {
     districtArr.appendChild(option);
   }
 });
-let oneWorkshop = {};
-let workshops = JSON.parse(localStorage.getItem("workshops"));
-// number registration
-
-//otp
-const otpForm = document.getElementById("otpForm");
-otpForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // let workOtp = workshops.find((e) => {
-  //   if (e.workshopId == oneWorkshop) {
-  //     return true;
-  //   }
-  // });
-  let otpValue = document.getElementById("otpValue").value;
-  if (oneWorkshop["otp"] == otpValue) {
-    alert("phone number verified");
-    let name = document.getElementById("ownerName");
-    name.value = oneWorkshop["name"];
-    let number = document.getElementById("ownerNumber");
-    number.value = oneWorkshop["number"];
-
-    openDiv("#workshopForm", "#otpForm");
-  } else {
-    alert("otp is incorrect");
-    return;
-  }
-});
-
-console.log(oneWorkshop);
-
-//login
-let loginForm = document.getElementById("workshopLoginForm");
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let loginNumber = document.getElementById("loginNumber").value;
-  let loginPassword = document.getElementById("loginPassword").value;
-  alert(loginNumber);
-  read(loginNumber, loginPassword, 0);
-});
 let loginBtn = document.getElementById("loginBtn");
 loginBtn.addEventListener("click", () => {
   openDiv("#workshopLoginForm", "#numberForm");

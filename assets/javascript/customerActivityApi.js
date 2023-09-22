@@ -17,6 +17,15 @@ if (bookingId == null) {
   if (booking["workshopInfo"] == null) {
     let nearWorkshops = findNearByWorkshopsApi(bookingId);
     nearWorkshops.sort((a, b) => a.distance - b.distance);
+    let cancelBtn = document.getElementById("cancelButton");
+    cancelBtn.addEventListener("click", () => {
+      let con = confirm("Are you want to cancel the request");
+      if (con) {
+        cancelBooking(booking["bookingId"], "user");
+        localStorage.removeItem("livebookingId");
+        window.location.reload();
+      }
+    });
 
     const intervalId = setInterval(() => {
       if (i < 3) {
@@ -27,6 +36,7 @@ if (bookingId == null) {
       i++;
     }, 5000);
   } else {
+    document.querySelector(".waitingCard").style.display = "none";
     createOtpCard(booking, ".otpCard");
   }
 }

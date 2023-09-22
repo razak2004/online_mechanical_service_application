@@ -148,37 +148,46 @@ function createOtpCard(obj, id) {
   otpCardDiv.id = "otpCard";
 
   const h4 = document.createElement("h4");
-  // h4.textContent = obj["workshopInfo"]["workshopName"] + " accepted your request";
+  h4.textContent =
+    obj["workshopInfo"]["workshopName"] + " accepted your request";
 
   const p = document.createElement("p");
   p.textContent = "Share this otp to the Workshop owner";
 
   const h5 = document.createElement("h5");
-  // h5.textContent = obj["otp"]"1023";
+  h5.textContent = obj["otp"];
 
   const locationLink = document.createElement("a");
   locationLink.href = "#";
   const locationIcon = document.createElement("i");
   locationIcon.className = "material-symbols-outlined";
   locationIcon.textContent = " near_me ";
-  // locationIcon.href =
-  //   "https://www.google.com/maps/place/" +
-  //   obj["workshopInfo"]["workshopAddress"];
+  locationLink.href =
+    "https://www.google.com/maps/place/" +
+    obj["workshopInfo"]["workshopAddress"];
 
   locationLink.appendChild(locationIcon);
   locationLink.appendChild(document.createTextNode(" Location"));
 
   const phoneLink = document.createElement("a");
   phoneLink.href = "";
+  const num = document.createElement("p");
   const phoneIcon = document.createElement("i");
   phoneIcon.className = "material-symbols-outlined";
   phoneIcon.textContent = " phone_in_talk ";
+  num.innerText = obj["workshopInfo"]["user"]["number"];
+  // document.createTextNode();
   phoneLink.appendChild(phoneIcon);
-  // document.createTextNode(obj["workshopInfo"]["user"]["number"]);
-  phoneLink.appendChild;
+  phoneLink.appendChild(num);
 
   const cancelButton = document.createElement("button");
   cancelButton.textContent = "Cancel Booking";
+  cancelButton.addEventListener("click", () => {
+    let con = confirm("Are you sure want to cancel this booking");
+    if (con) {
+      cancelBooking(obj["bookingId"], "user");
+    }
+  });
 
   // Append elements to the otpCardDiv
   otpCardDiv.appendChild(h4);
@@ -190,4 +199,42 @@ function createOtpCard(obj, id) {
 
   // Append the otpCardDiv to the document body or any other desired location
   document.querySelector(id).appendChild(otpCardDiv);
+}
+function cancelBooking(id, user) {
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+  let chk;
+
+  // Define the URL for your Spring Boot GET endpoint
+  var url =
+    "http://localhost:8080/booking/cancelBooking?bookingId=" +
+    id +
+    "&user=" +
+    user;
+  // Configure the request
+  xhr.open("GET", url, false);
+
+  // Set up a callback function to handle the response
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Successful response
+      chk = xhr.responseText;
+
+      // console.log(parsedData);
+    } else {
+      // Error response
+      console.error("Error:", xhr.statusText);
+    }
+  };
+
+  // Set up a callback function to handle network errors
+  xhr.onerror = function () {
+    console.error("Network error occurred");
+  };
+
+  // Send the GET request
+  xhr.send();
+  localStorage.removeItem("livebookingId");
+  window.location.reload();
+  return chk;
 }

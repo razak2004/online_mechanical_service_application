@@ -67,41 +67,53 @@ function createBookingApi(data) {
   return id;
 }
 function findNearByWorkshopsApi(id) {
-  // Create a new XMLHttpRequest object
-  var xhr = new XMLHttpRequest();
+  try {
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
 
-  // Define the URL for your Spring Boot GET endpoint
-  var url = "http://localhost:8080/booking/nearWorkshops?bookingId=" + id;
+    // Define the URL for your Spring Boot GET endpoint
+    var url = "http://localhost:8080/booking/nearWorkshops?bookingId=" + id;
 
-  let user = [];
+    let user = [];
 
-  // Configure the request
-  xhr.open("GET", url, false);
+    // Configure the request
+    xhr.open("GET", url, false);
 
-  // Set up a callback function to handle the response
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      // Successful response
-      var responseData = xhr.responseText;
+    // Set up a callback function to handle the response
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Successful response
+        var responseData = xhr.responseText;
 
-      // You can parse the response as JSON if it's JSON data
+        // You can parse the response as JSON if it's JSON data
 
-      user = JSON.parse(responseData);
-      // console.log(parsedData);
-    } else {
-      // Error response
-      console.error("Error:", xhr.statusText);
-    }
-  };
+        user = JSON.parse(responseData);
+        // console.log(parsedData);
+      } else {
+        // Error response
+        console.error("Error:", xhr.statusText);
+      }
+    };
 
-  // Set up a callback function to handle network errors
-  xhr.onerror = function () {
-    console.error("Network error occurred");
-  };
+    // Set up a callback function to handle network errors
+    xhr.onerror = function () {
+      console.error("Network error occurred");
+    };
 
-  // Send the GET request
-  xhr.send();
-  return user;
+    // Send the GET request
+    xhr.send();
+    return {
+      status: 200,
+      message: "Success",
+      data: user,
+    };
+  } catch (error) {
+    console.log("error", error);
+    return {
+      status: error.code,
+      message: "No Workshop Found",
+    };
+  }
 }
 
 function oneWorkshopCard(obj, id) {

@@ -68,8 +68,8 @@ if (signUpForm != null) {
         password,
         role: 2,
       };
-      let service = new UserServiceApi();
-      let response = service.createUser(data);
+
+      let response = UserServiceApi.createUser(data);
       if (response.statusCode == 200) {
         Notify.success("Account Created SuccessFully");
         openDiv("#loginForm", "#signUpForm");
@@ -98,11 +98,11 @@ if (loginForm != null) {
     let passwordValid = passwordValidation(password);
     if (numberValid && passwordValid) {
       let user = { number, password };
-      let service = new UserServiceApi();
-      let response = service.loginUser(user);
+
+      let response = UserServiceApi.loginUser(user);
       if (response.statusCode == 200) {
         let data = JSON.parse(response.data);
-        localStorage.setItem("loggedUserId", idToToken(data.id));
+        sessionStorage.setItem("loggedUserId", idToToken(data.id));
         alert(data.name + " successfully logged in");
         if ((data.role = 2)) {
           window.location.href = "./pages/Customer/cust.html";

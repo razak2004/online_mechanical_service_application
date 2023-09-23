@@ -225,6 +225,38 @@ class WorkshopServiceApi {
     xhr.send();
     return JSON.parse(bookings);
   }
+  static isWorkshopPresent(area) {
+    var xhr = new XMLHttpRequest();
+
+    // Define the URL for your Spring Boot GET endpoint
+    var url =
+      "http://localhost:8080/api/reparo/workshop/isWorkshopPresent?area=" +
+      area;
+    let bookings;
+
+    // Configure the request
+    xhr.open("GET", url, false);
+
+    // Set up a callback function to handle the response
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Successful response
+        bookings = xhr.responseText;
+      } else {
+        // Error response
+        console.error("Error:", xhr.statusText);
+      }
+    };
+
+    // Set up a callback function to handle network errors
+    xhr.onerror = function () {
+      console.error("Network error occurred");
+    };
+
+    // Send the GET request
+    xhr.send();
+    return JSON.parse(bookings);
+  }
 }
 
 class BookingServiceApi {

@@ -110,7 +110,7 @@ if (userId != null) {
   if (bookingForm != null) {
     bookingForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      let existBooking = localStorage.getItem("livebookingId");
+      let existBooking = sessionStorage.getItem("livebookingId");
       if (existBooking != null) {
         alert("you have requested a service cancel it to create another");
         window.location.href = "./customerActivity.html";

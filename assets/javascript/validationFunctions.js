@@ -88,3 +88,11 @@ function idToToken(userId) {
 function tokenToId(userToken) {
   return atob(userToken); // Decode the base64 user token to get the user ID
 }
+
+function isUserLogged() {
+  let id = sessionStorage.getItem("loggedUserId");
+  if (id == null) {
+    alert("please try to login");
+    window.location.href = "../../index.html";
+  }
+}

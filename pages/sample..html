@@ -12,7 +12,7 @@
     </div>
     <script src="../assets/javascript/sourceApi/userApiService.js"></script>
     <script> 
-    const userService =  new UserServiceApi();
+    const userService =  new WorkshopServiceApi();
     let user = {
       name : "check",
       number: 9812345600,
@@ -21,7 +21,7 @@
 
     }
     function test(){
-      let resp = userService.loginUser(user);
+      let resp = userService.getAllWorkshops(2);
  
     console.log("resp ",resp);
     }

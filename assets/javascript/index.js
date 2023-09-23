@@ -1,7 +1,5 @@
 // Define the data to be sent in the POST request
 
-// Send the POST request
-
 const signUpButton = document.getElementById("signButton");
 signUpButton.addEventListener("click", () => {
   signUpForm.style.display = "flex";
@@ -11,8 +9,6 @@ loginButton.addEventListener("click", () => {
   loginForm.style.display = "flex";
 });
 
-let oneUser = {};
-
 const signLogOut = document.getElementById("signLogOut");
 signLogOut.addEventListener("click", () => {
   signUpForm.style.display = "none";
@@ -21,60 +17,104 @@ const LoginExit = document.getElementById("LoginExit");
 LoginExit.addEventListener("click", () => {
   loginForm.style.display = "none";
 });
+const signLoginBtn = document.getElementById("signLoginBtn");
+if (signLoginBtn != null) {
+  signLoginBtn.addEventListener("click", () => {
+    openDiv("#loginForm", "#signUpForm");
+  });
+}
+const loginsignBtn = document.getElementById("LoginSignBtn");
+if (loginsignBtn != null) {
+  loginsignBtn.addEventListener("click", () => {
+    openDiv("#signUpForm", "#loginForm");
+  });
+}
+// user registration form
+const signUpForm = document.getElementById("signUpForm");
+// signUp form
+if (signUpForm != null) {
+  let nameTag = document.getElementById("name");
+  nameTag.addEventListener("change", () => {
+    stringValidation(nameTag.value, "name");
+  });
+  let numberTag = document.getElementById("number");
+  numberTag.addEventListener("change", () => {
+    phoneNumberValidation(numberTag.value);
+  });
+  let passwordTag = document.getElementById("password");
+  passwordTag.addEventListener("change", () => {
+    passwordValidation(passwordTag.value);
+  });
 
-let name = document.getElementById("name");
-name.addEventListener("change", (e) => {
-  e = name.value;
-  let check = hasnotAlphabet(e);
-  if (check == true) {
-    Notify.error("Name only contain alphabets");
-  }
-});
-let signUpNumber = document.getElementById("number");
-signUpNumber.addEventListener("change", (e) => {
-  e = signUpNumber.value;
-  let check = hasNumber(e);
-  if (check == false) {
-    Notify.error("Only Numbers are accepted");
-  }
-  if (e.length != 10) {
-    Notify.error("Number should be 10 digits");
-  }
-});
-let loginNumber = document.getElementById("loginNumber");
-loginNumber.addEventListener("change", (e) => {
-  e = loginNumber.value;
-  let check = hasNumber(e);
-  if (check == false) {
-    Notify.error("Only Numbers are accepted");
-  }
-  if (e.length != 10) {
-    Notify.error("Number should be 10 digits");
-  }
-});
-let otpNumber = document.getElementById("otpValue");
-otpNumber.addEventListener("change", (e) => {
-  e = otpNumber.value;
-  let check = hasNumber(e);
-  if (check == false) {
-    Notify.error("Only Numbers are accepted");
-  }
-  if (e.length != 4) {
-    Notify.error("OTP should be 4 digits");
-  }
-});
+  signUpForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let name = nameTag.value;
+    let number = numberTag.value;
+    let password = passwordTag.value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    if (password != confirmPassword) {
+      Notify.error("pasword not matching");
+      return;
+    }
 
-let password = document.getElementById("password");
-password.addEventListener("change", (e) => {
-  e = password.value;
-  if (e.length > 6) {
-    Notify.error("Password should not be more than 6 digits");
-  }
-});
-let confirmPassword = document.getElementById("confirmPassword");
-confirmPassword.addEventListener("change", (e) => {
-  e = confirmPassword.value;
-  if (e.length > 6) {
-    Notify.error("Password should not be more than 6 digits");
-  }
-});
+    let nameValid = stringValidation(name, "name");
+    let numberValid = phoneNumberValidation(number);
+    let passwordValid = passwordValidation(password);
+
+    if (nameValid && numberValid & passwordValid) {
+      let data = {
+        name,
+        number,
+        password,
+        role: 2,
+      };
+      let service = new UserServiceApi();
+      let response = service.createUser(data);
+      if (response.statusCode == 200) {
+        Notify.success("Account Created SuccessFully");
+        openDiv("#loginForm", "#signUpForm");
+      } else {
+        Notify.error(response.error);
+        return;
+      }
+    }
+  });
+}
+const loginForm = document.getElementById("loginForm");
+if (loginForm != null) {
+  let numberTag = document.getElementById("loginNumber");
+  numberTag.addEventListener("change", () => {
+    phoneNumberValidation(numberTag.value);
+  });
+  let passwordTag = document.getElementById("loginPassword");
+  passwordTag.addEventListener("change", () => {
+    passwordValidation(passwordTag.value);
+  });
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let number = numberTag.value;
+    let password = passwordTag.value;
+    let numberValid = phoneNumberValidation(number);
+    let passwordValid = passwordValidation(password);
+    if (numberValid && passwordValid) {
+      let user = { number, password };
+      let service = new UserServiceApi();
+      let response = service.loginUser(user);
+      if (response.statusCode == 200) {
+        let data = JSON.parse(response.data);
+        localStorage.setItem("loggedUserId", idToToken(data.id));
+        alert(data.name + " successfully logged in");
+        if ((data.role = 2)) {
+          window.location.href = "./pages/Customer/cust.html";
+        } else if ((data.role = 3)) {
+          window.location.href = "./pages/workshop/workshop.html";
+        } else {
+          alert("admin");
+        }
+      } else {
+        Notify.error(response.error);
+        return;
+      }
+    }
+  });
+}

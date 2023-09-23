@@ -1,36 +1,3 @@
-function isNumber(str) {
-  // Use the isNaN() function to check if the string can be converted to a number
-  // isNaN() returns true for strings that cannot be converted to numbers
-  return !isNaN(str);
-}
-function stringValidation(str, strName) {
-  const regex = /^[a-zA-Z ]+$/;
-  if (!regex.test(str) || str == "") {
-    Notify.error(
-      strName +
-        " can't be null or does not contains numbers and special characters "
-    );
-  }
-  return regex.test(str);
-}
-function phoneNumberValidation(num) {
-  const numRegex = /^[0-9]{10}$/;
-  if (!numRegex.test(num) || num == "") {
-    Notify.error(
-      "phone Number cant contain Alphabet or contain only 10 digits"
-    );
-  }
-  return numRegex.test(num);
-}
-//
-function passwordValidation(pass) {
-  const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/;
-  if (!passRegex.test(pass) || pass == "") {
-    Notify.error("password Must be in Alphanumeric Character");
-  }
-  return passRegex.test(pass);
-}
-
 let id;
 let userRes = {};
 function addUser(data) {
@@ -148,55 +115,6 @@ function addWorkshop(data, userId) {
   // Send the POST request with the JSON data
   xhr.send(JSON.stringify(data));
   return id;
-}
-
-const signLoginBtn = document.getElementById("signLoginBtn");
-if (signLoginBtn != null) {
-  signLoginBtn.addEventListener("click", () => {
-    openDiv("#loginForm", "#signUpForm");
-  });
-}
-const loginsignBtn = document.getElementById("LoginSignBtn");
-if (loginsignBtn != null) {
-  loginsignBtn.addEventListener("click", () => {
-    openDiv("#signUpForm", "#loginForm");
-  });
-}
-
-// user registration form
-const signUpForm = document.getElementById("signUpForm");
-// signUp form
-if (signUpForm != null) {
-  signUpForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let name = document.getElementById("name").value;
-    let number = document.getElementById("number").value;
-    let password = document.getElementById("password").value;
-    let confirmPassword = document.getElementById("confirmPassword").value;
-    if (password != confirmPassword) {
-      Notify.error("pasword not matching");
-      return;
-    }
-
-    let nameValid = stringValidation(name, "name");
-    let numberValid = phoneNumberValidation(number);
-    let passwordValid = passwordValidation(password);
-
-    if (nameValid && numberValid & passwordValid) {
-      let data = {
-        name,
-        number,
-        password,
-        role: 2,
-      };
-      let id = addUser(data);
-      if (isNumber(id)) {
-        openDiv("#loginForm", "#signUpForm");
-      } else {
-        return;
-      }
-    }
-  });
 }
 
 // workshop

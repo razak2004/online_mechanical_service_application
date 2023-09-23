@@ -278,7 +278,7 @@
   <body>
     <h1>Welcome To Reparo's Workshop Sector</h1>
     <h3>please fill up your details</h3>
-    <form action="" id="workshopForm">
+    <form id="workshopForm">
       <div class="leftForm">
         <h4>Enter your Details</h4>
         <div class="inputCont">
@@ -301,15 +301,7 @@
             required
           />
         </div>
-        <!-- <div class="inputCont">
-          <span class="material-symbols-outlined"> mail </span>
-          <input
-            type="email"
-            id="ownerEmail"
-            placeholder="Enter your email"
-            required
-          />
-        </div> -->
+
         <h4>Enter Workshop's details</h4>
         <div class="inputCont">
           <span class="material-symbols-outlined"> museum </span>
@@ -320,17 +312,7 @@
             required
           />
         </div>
-        <div class="inputCont">
-          <span class="material-symbols-outlined"> photo_camera </span>
-          <!-- <h5>Upload workshop Photo</h5> -->
-          <input
-            type="text"
-            name=""
-            placeholder="Enter your image url"
-            required
-            id="image"
-          />
-        </div>
+
         <div class="inputCont">
           <span class="material-symbols-outlined"> flag_circle </span>
           <select name="workShop Country" id="countries">
@@ -353,8 +335,6 @@
           <h5>Enter Workshop's address</h5>
           <input type="text" name="" id="address" />
         </div>
-      </div>
-      <div class="rightForm">
         <div class="inputCont">
           <span class="material-symbols-outlined"> bike_scooter </span>
           <select name="workShop type" id="vehicleType">
@@ -364,6 +344,8 @@
             <option value="4">4 wheelers</option>
           </select>
         </div>
+      </div>
+      <div class="rightForm">
         <div class="inputCont">
           <span class="material-symbols-outlined"> schedule </span>
           <p>Opening time :</p>
@@ -384,20 +366,6 @@
             required
           />
         </div>
-        <div class="inputCont">
-          <p>Did you accept pickup service</p>
-          YES
-          <input type="radio" name="pickup" id="pickupService" value="yes" />
-          NO
-          <input type="radio" name="pickup" id="" value="no" />
-        </div>
-        <div class="inputCont">
-          <p>Did you accept breakdown service</p>
-          YES
-          <input type="radio" name="brk" id="breakdownService" value="yes" />
-          NO
-          <input type="radio" name="brk" id="" value="no" />
-        </div>
         <h4>Service details</h4>
         <div class="serviceContainer">
           <h5>General Service</h5>
@@ -415,8 +383,6 @@
             />
           </h6>
         </div>
-      </div>
-      <div class="lastForm">
         <div class="serviceContainer">
           <h5>Electrical System Repairs</h5>
           <div class="serviceCont" id="electrical"></div>
@@ -433,6 +399,8 @@
             />
           </h6>
         </div>
+      </div>
+      <div class="lastForm">
         <div class="serviceContainer">
           <h5>Suspension and Brake Services</h5>
           <div class="serviceCont" id="suspension"></div>
@@ -485,7 +453,12 @@
       </button>
     </form>
 
-    <form class="createAccountDiv" id="numberForm" style="display: flex" ;>
+    <form
+      class="createAccountDiv"
+      id="workshopRegisterForm"
+      style="display: flex"
+      ;
+    >
       <h3>Sign up</h3>
       <div class="inputCont">
         <span class="material-symbols-outlined"> badge </span>
@@ -566,13 +539,12 @@
     </form>
 
     <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"></script>
-
-    <script src="../assets/javascript/postRequest.js"></script>
-    <script src="../assets/javascript/postLoginRequest.js"></script>
-    <script type="module" src="../assets/javascript/workshop.js"></script>
+    <script src="../assets/javascript/sourceApi/apiService.js"></script>
+    <script src="../assets/javascript/validationFunctions.js"></script>
+    <script src="../assets/javascript/workshop/workshopSign.js"></script>
     <script src="../assets/javascript/JSON.js"></script>
     <script src="../assets/javascript/buildedfunction.js"></script>
-    <script src="../assets/javascript/validation.js"></script>
+
     <script>
       let vehicleType = document.getElementById("vehicleType");
       vehicleType.addEventListener("change", (e) => {

@@ -75,6 +75,11 @@ function passwordValidation(pass) {
   }
   return passRegex.test(pass);
 }
+function priceValidate(price) {
+  if (price < 0) Notify.error("price cant be less than 0");
+  if (price > 9999) Notify.error("price cant be more than");
+  return price > 0 && price < 9999;
+}
 function idToToken(userId) {
   return btoa(userId); // Encode the user ID to base64
 }

@@ -1,5 +1,5 @@
 class UserServiceApi {
-  createUser(user) {
+  static createUser(user) {
     let xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/reparo/user/createUser";
     xhr.open("POST", url, false);
@@ -19,7 +19,7 @@ class UserServiceApi {
     xhr.send(JSON.stringify(user));
     return JSON.parse(response);
   }
-  loginUser(user) {
+  static loginUser(user) {
     let xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/reparo/user/loginUser";
     xhr.open("POST", url, false);
@@ -40,7 +40,7 @@ class UserServiceApi {
     return JSON.parse(response);
   }
 
-  findUserByNum(number) {
+  static findUserByNum(number) {
     let xhr = new XMLHttpRequest();
     const url =
       "http://localhost:8080/api/reparo/user/findByNum?number=" + number;
@@ -58,10 +58,10 @@ class UserServiceApi {
     xhr.onerror = function () {
       console.error("Network error occurred");
     };
-    xhr.send(JSON.stringify(user));
+    xhr.send();
     return JSON.parse(response);
   }
-  findUserById(id) {
+  static findUserById(id) {
     let xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/reparo/user/findById?id=" + id;
     xhr.open("GET", url, false);
@@ -78,12 +78,12 @@ class UserServiceApi {
     xhr.onerror = function () {
       console.error("Network error occurred");
     };
-    xhr.send(JSON.stringify(user));
+    xhr.send();
     return JSON.parse(response);
   }
 }
 class VehicleServiceApi {
-  createVehicle(vehicle) {
+  static createVehicle(vehicle) {
     let xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/reparo/vehicle/createVehicle";
     xhr.open("POST", url, false);
@@ -105,7 +105,7 @@ class VehicleServiceApi {
   }
 }
 class WorkshopServiceApi {
-  createWorkShop(workshop, userId) {
+  static createWorkShop(workshop, userId) {
     let xhr = new XMLHttpRequest();
     const url =
       "http://localhost:8080/api/reparo/workshop/createWorkshop?userId=" +
@@ -127,7 +127,7 @@ class WorkshopServiceApi {
     xhr.send(JSON.stringify(workshop));
     return JSON.parse(response);
   }
-  getAllWorkshops(id) {
+  static getAllWorkshops(id) {
     // Create a new XMLHttpRequest object
     var xhr = new XMLHttpRequest();
 
@@ -160,7 +160,7 @@ class WorkshopServiceApi {
     xhr.send();
     return JSON.parse(workshops);
   }
-  findWorkshopByUserId(id) {
+  static findWorkshopByUserId(id) {
     // Create a new XMLHttpRequest object
     var xhr = new XMLHttpRequest();
 
@@ -193,7 +193,7 @@ class WorkshopServiceApi {
     xhr.send();
     return JSON.parse(workshops);
   }
-  findBookings(id) {
+  static findBookings(id) {
     var xhr = new XMLHttpRequest();
 
     // Define the URL for your Spring Boot GET endpoint
@@ -228,7 +228,7 @@ class WorkshopServiceApi {
 }
 
 class BookingServiceApi {
-  createBooking(booking) {
+  static createBooking(booking) {
     let xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/reparo/booking/createBooking";
     xhr.open("POST", url, false);
@@ -249,7 +249,7 @@ class BookingServiceApi {
     return JSON.parse(response);
   }
   // workshopId,bookingId,OTP,
-  acceptBooking(acceptObj) {
+  static acceptBooking(acceptObj) {
     let xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/reparo/booking/acceptBooking";
     xhr.open("POST", url, false);
@@ -269,7 +269,7 @@ class BookingServiceApi {
     xhr.send(JSON.stringify(acceptObj));
     return JSON.parse(response);
   }
-  findNearByWorkshops(bookingId) {
+  static findNearByWorkshops(bookingId) {
     var xhr = new XMLHttpRequest();
 
     // Define the URL for your Spring Boot GET endpoint
@@ -302,7 +302,7 @@ class BookingServiceApi {
     xhr.send();
     return JSON.parse(workshops);
   }
-  findBookingById(id) {
+  static findBookingById(id) {
     var xhr = new XMLHttpRequest();
 
     // Define the URL for your Spring Boot GET endpoint
@@ -334,7 +334,7 @@ class BookingServiceApi {
     xhr.send();
     return JSON.parse(booking);
   }
-  cancelBooking(id, user) {
+  static cancelBooking(id, user) {
     var xhr = new XMLHttpRequest();
 
     // Define the URL for your Spring Boot GET endpoint
@@ -371,7 +371,7 @@ class BookingServiceApi {
   }
 }
 class ServiceListServiceApi {
-  createServiceList(bookingId) {
+  static createServiceList(bookingId) {
     var xhr = new XMLHttpRequest();
 
     // Define the URL for your Spring Boot GET endpoint
@@ -404,7 +404,7 @@ class ServiceListServiceApi {
     xhr.send();
     return JSON.parse(data);
   }
-  createService(service) {
+  static createService(service) {
     let xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/reparo/service/createService";
     xhr.open("POST", url, false);
@@ -424,7 +424,7 @@ class ServiceListServiceApi {
     xhr.send(JSON.stringify(service));
     return JSON.parse(response);
   }
-  findServiceListByBookingId(bookingId) {
+  static findServiceListByBookingId(bookingId) {
     var xhr = new XMLHttpRequest();
 
     // Define the URL for your Spring Boot GET endpoint
@@ -457,7 +457,7 @@ class ServiceListServiceApi {
     xhr.send();
     return JSON.parse(data);
   }
-  updateService(service) {
+  static updateService(service) {
     let xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/reparo/service/updateService";
     xhr.open("POST", url, false);
@@ -477,7 +477,7 @@ class ServiceListServiceApi {
     xhr.send(JSON.stringify(service));
     return JSON.parse(response);
   }
-  deleteService(serviceId) {
+  static deleteService(serviceId) {
     var xhr = new XMLHttpRequest();
 
     // Define the URL for your Spring Boot GET endpoint
@@ -510,7 +510,7 @@ class ServiceListServiceApi {
     xhr.send();
     return JSON.parse(data);
   }
-  makeServiceListLive(listId) {
+  static makeServiceListLive(listId) {
     var xhr = new XMLHttpRequest();
 
     // Define the URL for your Spring Boot GET endpoint

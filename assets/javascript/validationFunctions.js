@@ -77,7 +77,7 @@ function passwordValidation(pass) {
 }
 function priceValidate(price) {
   if (price < 0) Notify.error("price cant be less than 0");
-  if (price > 9999) Notify.error("price cant be more than");
+  if (price > 9999) Notify.error("price cant be more than 9999");
   return price > 0 && price < 9999;
 }
 function idToToken(userId) {

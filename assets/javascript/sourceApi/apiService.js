@@ -166,7 +166,8 @@ class WorkshopServiceApi {
 
     // Define the URL for your Spring Boot GET endpoint
     var url =
-      "http://localhost:8080/api/reparo/workshop/getWorkshopByUserId?id=" + id; // Replace with your actual endpoint URL
+      "http://localhost:8080/api/reparo/workshop/getWorkshopByUserId?userId=" +
+      id; // Replace with your actual endpoint URL
 
     let workshops;
 

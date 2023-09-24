@@ -342,3 +342,22 @@ section {
   font-size: 18px;
   outline: none;
 }
+.rocket_launch {
+  overflow-y: hidden;
+}
+.rocket_launch span {
+  font-size: 200px;
+  animation-name: rocket;
+  animation-duration: 2s;
+  position: absolute;
+  right: 480px;
+  bottom: -200px;
+  /* transform: rotate(310deg); */
+}
+
+@keyframes rocket {
+  100% {
+    /* transform: rotate(90deg); */
+    transform: translateY(-1000px);
+  }
+}

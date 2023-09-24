@@ -269,9 +269,9 @@ if (loginForm != null) {
         let data = JSON.parse(response.data);
         sessionStorage.setItem("loggedUserId", idToToken(data.id));
         alert(data.name + " successfully logged in");
-        if ((data.role = 2)) {
+        if (data.role == 2) {
           window.location.href = "./Customer/cust.html";
-        } else if ((data.role = 3)) {
+        } else if (data.role == 3) {
           window.location.href = "./workshop/workshop.html";
         } else {
           alert("admin");

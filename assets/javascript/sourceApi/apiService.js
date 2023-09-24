@@ -103,6 +103,40 @@ class VehicleServiceApi {
     xhr.send(JSON.stringify(vehicle));
     return JSON.parse(response);
   }
+  static getVehicleByUserId(id) {
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Define the URL for your Spring Boot GET endpoint
+    var url =
+      "http://localhost:8080/api/reparo/vehicle/findVehicleByUserId?userId=" +
+      id; // Replace with your actual endpoint URL
+
+    let vehicle;
+
+    // Configure the request
+    xhr.open("GET", url, false);
+
+    // Set up a callback function to handle the response
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Successful response
+        vehicle = xhr.responseText;
+      } else {
+        // Error response
+        console.error("Error:", xhr.statusText);
+      }
+    };
+
+    // Set up a callback function to handle network errors
+    xhr.onerror = function () {
+      console.error("Network error occurred");
+    };
+
+    // Send the GET request
+    xhr.send();
+    return JSON.parse(vehicle);
+  }
 }
 class WorkshopServiceApi {
   static createWorkShop(workshop, userId) {

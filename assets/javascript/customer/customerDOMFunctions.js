@@ -334,3 +334,78 @@ function createServiceDiv(obj, id) {
   // Append the serviceDiv to the document body or another container element
   document.querySelector(id).appendChild(serviceDiv);
 }
+function profileVehicleCard(obj, id, i) {
+  // Create the card element
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  // Create the card icon element
+  const cardIcon = document.createElement("div");
+  cardIcon.classList.add("card-icon");
+  const carIcon = document.createElement("i");
+  carIcon.classList.add("fas", "fa-car");
+  const it = document.createElement("p");
+  it.innerText = i;
+  cardIcon.appendChild(carIcon);
+  cardIcon.appendChild(it);
+
+  // Create the first card content div
+  const cardContent1 = document.createElement("div");
+  cardContent1.classList.add("card-content");
+  const companyInfo = document.createElement("p");
+  const companydata = document.createElement("p");
+  const companySt = document.createElement("strong");
+  companySt.innerText = " Company:";
+  companyInfo.append(companySt);
+  companydata.innerText = obj["vehicleCompany"];
+  companyInfo.append(companydata);
+  const modelinfo = document.createElement("p");
+  const modelData = document.createElement("p");
+  const modelSt = document.createElement("strong");
+  modelSt.innerText = " Model:";
+  modelinfo.append(modelSt);
+  modelData.innerText = obj["vehicleModel"];
+  modelinfo.append(modelData);
+  const yearInfo = document.createElement("p");
+  const yearData = document.createElement("p");
+  const yearSt = document.createElement("strong");
+  yearSt.innerText = " Year:";
+  yearInfo.append(yearSt);
+  yearData.innerText = obj["vehicleYear"];
+  yearInfo.append(yearData);
+
+  // Append the elements to the card
+  cardContent1.appendChild(companyInfo);
+  cardContent1.appendChild(modelinfo);
+  cardContent1.appendChild(yearInfo);
+
+  // Create the second card content div
+  const cardContent2 = document.createElement("div");
+  cardContent2.classList.add("card-content");
+  const numberInfo = document.createElement("p");
+  const numberData = document.createElement("p");
+  const numberSt = document.createElement("strong");
+  numberSt.innerText = "VehicleNumber";
+  numberInfo.append(numberSt);
+  numberData.innerText = obj["vehicleNumber"];
+  numberInfo.append(numberData);
+  const typeInfo = document.createElement("p");
+  const typeData = document.createElement("p");
+  const typeSt = document.createElement("strong");
+  typeSt.innerText = " Type: ";
+  typeInfo.append(typeSt);
+  typeData.innerText = obj["vehicleType"] + "wheelers";
+  typeInfo.append(typeData);
+
+  // Append the elements to the card
+  cardContent2.appendChild(numberInfo);
+  cardContent2.appendChild(typeInfo);
+
+  // Append the card icon and content divs to the card
+  card.appendChild(cardIcon);
+  card.appendChild(cardContent1);
+  card.appendChild(cardContent2);
+
+  // Append the card to the document body
+  document.querySelector(id).appendChild(card);
+}

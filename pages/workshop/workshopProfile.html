@@ -48,50 +48,28 @@
         <li>
           <a href="./workshopActivity.html">
             <i class="material-symbols-outlined"> activity_zone </i>
-            <p>Your Activity</p>
+            <p>Bookings</p>
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="material-symbols-outlined"> shopping_cart </i>
-            <p>Our Products</p>
-          </a>
-        </li>
-        <li>
-          <a href="#" style="background-color: white; color: black">
+          <a
+            href="./workshopProfile.html"
+            style="background-color: white; color: black"
+          >
             <i class="material-symbols-outlined"> account_circle </i>
             <p>Profile</p>
           </a>
         </li>
         <li>
-          <a href="./workshopNotification.html">
+          <a href="./workshopService.html">
             <i class="material-symbols-outlined"> notifications </i>
-            <p>Notifications</p>
+            <p>Your Services</p>
           </a>
         </li>
         <li>
           <a href="" id="settings">
             <i class="material-symbols-outlined"> settings </i>
             <p>Settings</p>
-          </a>
-        </li>
-        <!-- <li>
-          <a onclick="delUser()">
-            <i class="material-symbols-outlined"> delete </i>
-            <div>Delete Account</div>
-          </a>
-        </li> -->
-
-        <!-- <li>
-          <a href="#">
-            <i class="material-symbols-outlined"> contact_support </i>
-            <div>Help</div>
-          </a>
-        </li> -->
-        <li>
-          <a href="../../index.html">
-            <i class="material-symbols-outlined"> logout </i>
-            <div>log Out</div>
           </a>
         </li>
       </ul>
@@ -117,8 +95,9 @@
               <input
                 type="text"
                 placeholder="Enter your Number"
-                id="ownerName"
+                id="ownerNumber"
                 pattern="[0-9]{10}"
+                disabled
                 title="number should be in 10 digits "
                 required
               />
@@ -128,9 +107,8 @@
               <input
                 type="text"
                 placeholder="Your password"
-                id="ownerName"
-                pattern="[A-Za-z ]{3,20}"
-                title="Alphabets are only allowed as name "
+                value="# # # # # #"
+                disabled
                 required
               />
             </div>
@@ -144,7 +122,7 @@
               <input
                 type="text"
                 placeholder="Enter your Workshop Name "
-                id="ownerName"
+                id="workshopName"
                 pattern="[A-Za-z ]{3,20}"
                 title="Alphabets are only allowed as name "
                 required
@@ -155,9 +133,7 @@
               <input
                 type="text"
                 placeholder="Work shop type "
-                id="ownerName"
-                pattern="[A-Za-z ]{3,20}"
-                title="Alphabets are only allowed as name "
+                id="workshopType"
                 required
               />
             </div>
@@ -166,44 +142,21 @@
               <input
                 type="text"
                 placeholder="Address "
-                id="ownerName"
-                pattern="[A-Za-z ]{3,20}"
-                title="Alphabets are only allowed as name "
+                id="workshopAddress"
                 required
               />
             </div>
             <div class="containerOutput">
               <span class="material-symbols-outlined"> map </span>
-              <input
-                type="text"
-                placeholder="Address "
-                id="ownerName"
-                pattern="[A-Za-z ]{3,20}"
-                title="Alphabets are only allowed as name "
-                required
-              />
+              <input type="text" placeholder="city " id="city" required />
             </div>
             <div class="containerOutput">
               <span class="material-symbols-outlined"> map </span>
-              <input
-                type="text"
-                placeholder="Address "
-                id="ownerName"
-                pattern="[A-Za-z ]{3,20}"
-                title="Alphabets are only allowed as name "
-                required
-              />
+              <input type="text" placeholder="state " id="state" required />
             </div>
             <div class="containerOutput">
               <span class="material-symbols-outlined"> map </span>
-              <input
-                type="text"
-                placeholder="Address "
-                id="ownerName"
-                pattern="[A-Za-z ]{3,20}"
-                title="Alphabets are only allowed as name "
-                required
-              />
+              <input type="text" placeholder="country " id="country" required />
             </div>
           </div>
         </div>
@@ -276,5 +229,8 @@
         </div>
       </form>
     </div>
+    <script src="../../assets/javascript/sourceApi/apiService.js"></script>
+    <script src="../../assets/javascript/validationFunctions.js"></script>
+    <script src="../../assets/javascript/workshop/workshopProfile.js"></script>
   </body>
 </html>

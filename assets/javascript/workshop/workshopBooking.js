@@ -26,6 +26,11 @@ if (liveBookingId == null) {
   let bookingId = tokenToId(liveBookingId);
   let response = BookingServiceApi.findBookingById(bookingId);
   let bookingData = JSON.parse(response.data);
+  if (bookingData.request == false) {
+    alert("Sorry Customer Cancelled  the booking ");
+    sessionStorage.removeItem("liveAcceptedBookingId");
+    window.location.reload();
+  }
   if (bookingData["otp"] != 0) {
     createOtpCard("#otpDiv", bookingData);
   } else {
@@ -71,6 +76,10 @@ if (liveBookingId == null) {
     } else {
       document.getElementById("headBooking").innerText =
         "Your List has been sent to the customer ";
+      setInterval(() => {
+        sessionStorage.removeItem("liveAcceptedBookingId");
+        window.location.reload();
+      }, 2000);
     }
 
     console.log(serviceList);

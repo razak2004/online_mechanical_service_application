@@ -245,6 +245,8 @@ function createOtpCard(obj, id) {
   const h4 = document.createElement("h4");
   h4.textContent =
     obj["workshopInfo"]["workshopName"] + " accepted your request";
+  const h3 = document.createElement("h4");
+  h3.innerText;
 
   const p = document.createElement("p");
   p.textContent = "Share this otp to the Workshop owner";
@@ -280,7 +282,14 @@ function createOtpCard(obj, id) {
   cancelButton.addEventListener("click", () => {
     let con = confirm("Are you sure want to cancel this booking");
     if (con) {
-      cancelBooking(obj["bookingId"], "user");
+      let response = BookingServiceApi.cancelBooking(obj.bookingId, "user");
+      if (response.statusCode == 200) {
+        alert("your booking has been cancelled successfully");
+        sessionStorage.removeItem("liveBookingId");
+        window.location.reload();
+      } else {
+        Notify.error(response.error);
+      }
     }
   });
 
@@ -294,4 +303,34 @@ function createOtpCard(obj, id) {
 
   // Append the otpCardDiv to the document body or any other desired location
   document.querySelector(id).appendChild(otpCardDiv);
+}
+function createServiceDiv(obj, id) {
+  // Create a div element with the "service" class
+  const serviceDiv = document.createElement("div");
+  serviceDiv.classList.add("service");
+
+  // Create a span element for the "settings" icon
+  const settingsIcon = document.createElement("i");
+  settingsIcon.classList.add("material-symbols-outlined");
+  settingsIcon.textContent = " settings ";
+
+  // Create a paragraph element for the service name
+  const serviceName = document.createElement("p");
+  serviceName.textContent = obj["serviceName"];
+
+  // Create an h3 element for the currency and amount
+  const currencyIcon = document.createElement("i");
+  currencyIcon.classList.add("material-symbols-outlined");
+  currencyIcon.textContent = " currency_rupee ";
+
+  const amount = document.createElement("h3");
+  amount.appendChild(currencyIcon);
+  amount.appendChild(document.createTextNode(obj["servicePrice"]));
+
+  // Append all elements to the serviceDiv
+  serviceDiv.appendChild(settingsIcon);
+  serviceDiv.appendChild(serviceName);
+  serviceDiv.appendChild(amount);
+  // Append the serviceDiv to the document body or another container element
+  document.querySelector(id).appendChild(serviceDiv);
 }

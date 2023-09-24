@@ -402,6 +402,39 @@ class BookingServiceApi {
     xhr.send();
     return JSON.parse(booking);
   }
+  static findBookingByWorkshopId(workshopId) {
+    var xhr = new XMLHttpRequest();
+
+    // Define the URL for your Spring Boot GET endpoint
+    var url =
+      "http://localhost:8080/api/reparo/booking/getBookingsByWorkshopId?workshopId=" +
+      workshopId; // Replace with your actual endpoint URL
+
+    let booking;
+
+    // Configure the request
+    xhr.open("GET", url, false);
+
+    // Set up a callback function to handle the response
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Successful response
+        booking = xhr.responseText;
+      } else {
+        // Error response
+        console.error("Error:", xhr.statusText);
+      }
+    };
+
+    // Set up a callback function to handle network errors
+    xhr.onerror = function () {
+      console.error("Network error occurred");
+    };
+
+    // Send the GET request
+    xhr.send();
+    return JSON.parse(booking);
+  }
 }
 class ServiceListServiceApi {
   static createServiceList(bookingId) {
@@ -549,6 +582,59 @@ class ServiceListServiceApi {
     // Define the URL for your Spring Boot GET endpoint
     var url =
       "http://localhost:8080/api/reparo/service/makeServiceLive?serviceDetailId=" +
+      listId; // Replace with your actual endpoint URL
+
+    let data;
+
+    // Configure the request
+    xhr.open("GET", url, false);
+
+    // Set up a callback function to handle the response
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Successful response
+        data = xhr.responseText;
+      } else {
+        // Error response
+        console.error("Error:", xhr.statusText);
+      }
+    };
+
+    // Set up a callback function to handle network errors
+    xhr.onerror = function () {
+      console.error("Network error occurred");
+    };
+
+    // Send the GET request
+    xhr.send();
+    return JSON.parse(data);
+  }
+  static rejectServiceList(service) {
+    let xhr = new XMLHttpRequest();
+    const url = "http://localhost:8080/api/reparo/service/rejectServiceList";
+    xhr.open("POST", url, false);
+    xhr.setRequestHeader("Content-Type", "application/json", "application/xml");
+    let response;
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Successful response
+        response = xhr.responseText;
+      } else {
+        console.error("Error:", xhr.statusText);
+      }
+    };
+    xhr.onerror = function () {
+      console.error("Network error occurred");
+    };
+    xhr.send(JSON.stringify(service));
+    return JSON.parse(response);
+  }
+  static acceptServiceList(listId) {
+    var xhr = new XMLHttpRequest();
+
+    // Define the URL for your Spring Boot GET endpoint
+    var url =
+      "http://localhost:8080/api/reparo/service/createServiceList?listId=" +
       listId; // Replace with your actual endpoint URL
 
     let data;

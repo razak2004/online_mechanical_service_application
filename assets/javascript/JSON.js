@@ -155,12 +155,8 @@ const fourSuspensionBrake = [
 
 const two_wheeler_company = [
   {
-    company: "Select-Your-company",
-  },
-  {
     company: "Bajaj Auto",
     vehicles: [
-      "select-your-model",
       "Splendor Plus",
       "HF Deluxe",
       "Passion Pro",
@@ -186,7 +182,6 @@ const two_wheeler_company = [
   {
     company: "Hero MotoCorp",
     vehicles: [
-      "select-your-model",
       "Splendor Plus",
       "HF Deluxe",
       "Passion Pro",
@@ -212,7 +207,6 @@ const two_wheeler_company = [
   {
     company: "TVS Motor Company",
     vehicles: [
-      "select-your-model",
       "Apache RTR 160 4V",
       "Apache RTR 200 4V",
       "Apache RR 310",
@@ -238,7 +232,6 @@ const two_wheeler_company = [
   {
     company: "Honda Motorcycle and Scooter India",
     vehicles: [
-      "select-your-model",
       "Activa 6G",
       "Activa 125",
       "Shine",
@@ -264,7 +257,6 @@ const two_wheeler_company = [
   {
     company: "Royal Enfield",
     vehicles: [
-      "select-your-model",
       "Classic 350",
       "Bullet 350",
       "Meteor 350",
@@ -290,7 +282,6 @@ const two_wheeler_company = [
   {
     company: "Suzuki Motorcycle India",
     vehicles: [
-      "select-your-model",
       "Access 125",
       "Burgman Street",
       "Burgman 125",
@@ -316,7 +307,6 @@ const two_wheeler_company = [
   {
     company: "Yamaha Motor India",
     vehicles: [
-      "select-your-model",
       "FZ-S",
       "FZ Fi",
       "FZ 25",
@@ -342,7 +332,6 @@ const two_wheeler_company = [
   {
     company: "KTM India",
     vehicles: [
-      "select-your-model",
       "125 Duke",
       "200 Duke",
       "250 Duke",
@@ -368,7 +357,6 @@ const two_wheeler_company = [
   {
     company: "Jawa Motorcycles",
     vehicles: [
-      "select-your-model",
       "Jawa",
       "Jawa Forty Two",
       "Jawa Perak",
@@ -395,12 +383,8 @@ const two_wheeler_company = [
 
 const three_wheeler_company = [
   {
-    company: "Select-Your-company",
-  },
-  {
     company: "Bajaj Auto",
     vehicles: [
-      "select-your-model",
       "Bajaj RE Compact 2S",
       "Bajaj RE Compact 4S",
       "Bajaj RE Optima",
@@ -416,7 +400,6 @@ const three_wheeler_company = [
   {
     company: "Piaggio ",
     vehicles: [
-      "select-your-model",
       "Piaggio Ape City",
       "Piaggio Ape Xtra LDX",
       "Piaggio Ape DX",
@@ -432,7 +415,6 @@ const three_wheeler_company = [
   {
     company: "TVS Motors",
     vehicles: [
-      "select-your-model",
       "TVS King",
       "TVS King Deluxe",
       "TVS King Duramax",
@@ -448,7 +430,6 @@ const three_wheeler_company = [
   {
     company: "Atul Auto",
     vehicles: [
-      "select-your-model",
       "Atul Gem",
       "Atul Smart",
       "Atul Elite",
@@ -464,7 +445,6 @@ const three_wheeler_company = [
   {
     company: "Mahindra & Mahindra",
     vehicles: [
-      "select-your-model",
       "Mahindra Alfa",
       "Mahindra Alfa DX",
       "Mahindra Alfa Plus",
@@ -481,12 +461,8 @@ const three_wheeler_company = [
 
 const four_wheeler_company = [
   {
-    company: "Select-Your-company",
-  },
-  {
     company: "Maruti Suzuki",
     vehicles: [
-      "select-your-model",
       "Alto",
       "Swift",
       "Dzire",
@@ -502,7 +478,6 @@ const four_wheeler_company = [
   {
     company: "Hyundai",
     vehicles: [
-      "select-your-model",
       "i20",
       "Creta",
       "Verna",
@@ -518,7 +493,6 @@ const four_wheeler_company = [
   {
     company: "Tata Motors",
     vehicles: [
-      "select-your-model",
       "Tiago",
       "Altroz",
       "Nexon",
@@ -534,7 +508,6 @@ const four_wheeler_company = [
   {
     company: "Mahindra & Mahindra",
     vehicles: [
-      "select-your-model",
       "Scorpio",
       "XUV500",
       "Thar",
@@ -550,7 +523,6 @@ const four_wheeler_company = [
   {
     company: "Kia Motors",
     vehicles: [
-      "select-your-model",
       "Seltos",
       "Carnival",
       "Sonet",
@@ -566,7 +538,6 @@ const four_wheeler_company = [
   {
     company: "Toyota Kirloskar",
     vehicles: [
-      "select-your-model",
       "Fortuner",
       "Innova Crysta",
       "Glanza",
@@ -582,7 +553,6 @@ const four_wheeler_company = [
   {
     company: "Honda Cars India",
     vehicles: [
-      "select-your-model",
       "Honda City",
       "Honda Civic",
       "Honda Amaze",
@@ -598,7 +568,6 @@ const four_wheeler_company = [
   {
     company: "Renault India",
     vehicles: [
-      "select-your-model",
       "Renault Kwid",
       "Renault Triber",
       "Renault Duster",
@@ -614,7 +583,6 @@ const four_wheeler_company = [
   {
     company: "Ford",
     vehicles: [
-      "select-your-model",
       "Fiesta",
       "Focus",
       "Mustang",
@@ -630,7 +598,6 @@ const four_wheeler_company = [
   {
     company: "volkswagen",
     vehicles: [
-      "select-your-model",
       "Golf",
       "Polo",
       "Passat",

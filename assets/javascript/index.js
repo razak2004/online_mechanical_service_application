@@ -33,6 +33,22 @@ if (loginsignBtn != null) {
 const signUpForm = document.getElementById("signUpForm");
 // signUp form
 if (signUpForm != null) {
+  const passwordInput = document.querySelector("#password");
+  const CpasswordInput = document.querySelector("#confirmPassword");
+  const eye = document.querySelector("#eye");
+  eye.addEventListener("click", function () {
+    this.classList.toggle("fa-eye-slash");
+    const type =
+      passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+  });
+  const Ceye = document.querySelector("#Ceye");
+  Ceye.addEventListener("click", function () {
+    this.classList.toggle("fa-eye-slash");
+    const type =
+      CpasswordInput.getAttribute("type") === "password" ? "text" : "password";
+    CpasswordInput.setAttribute("type", type);
+  });
   let nameTag = document.getElementById("name");
   nameTag.addEventListener("change", () => {
     stringValidation(nameTag.value, "name");

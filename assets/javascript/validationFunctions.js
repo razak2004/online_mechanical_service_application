@@ -56,6 +56,10 @@ function stringValidation(str, strName) {
         " can't be null or does not contains numbers and special characters "
     );
   }
+  if (str.trim() == "") {
+    Notify.error(strName + "Cant be empty");
+    return false;
+  }
   return regex.test(str);
 }
 function phoneNumberValidation(num) {
@@ -71,7 +75,7 @@ function phoneNumberValidation(num) {
 function passwordValidation(pass) {
   const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,10}$/;
   if (!passRegex.test(pass) || pass == "") {
-    Notify.error("password Must be in Alphanumeric Character");
+    Notify.error("password Must be in Alphanumeric Character between 6 to 10");
   }
   return passRegex.test(pass);
 }

@@ -668,7 +668,7 @@ class ServiceListServiceApi {
 
     // Define the URL for your Spring Boot GET endpoint
     var url =
-      "http://localhost:8080/api/reparo/service/createServiceList?listId=" +
+      "http://localhost:8080/api/reparo/service/acceptServiceList?listId=" +
       listId; // Replace with your actual endpoint URL
 
     let data;

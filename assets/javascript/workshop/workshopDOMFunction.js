@@ -144,6 +144,8 @@ function createOtpCard(tag, obj) {
       let res = BookingServiceApi.cancelBooking(obj["bookingId"], "workshop");
       if (res.statusCode == 200) {
         Notify.success("Booking Canceled Successfully");
+        sessionStorage.removeItem("liveAcceptedBookingId");
+        window.location.reload();
       }
     }
   });
@@ -313,6 +315,9 @@ function openCreateServiceForm(listId) {
     }
   });
 }
+function closeCreateServiceForm() {
+  window.location.reload();
+}
 function createUpdateServiceForm(obj) {
   document.getElementById("serviceDetailDiv").style.display = "none";
   // Create the form element
@@ -359,6 +364,9 @@ function createUpdateServiceForm(obj) {
   input2.required = true;
   input2.id = "servicePrice";
   input2.value = obj["servicePrice"];
+  input2.pattern = "[0-9]{1,4}";
+  input2.title =
+    "price should not be more than 9999 or less than 0 and doesnot contain empty space";
   div2.appendChild(span2);
   div2.appendChild(input2);
 

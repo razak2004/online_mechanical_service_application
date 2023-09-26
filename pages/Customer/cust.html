@@ -119,7 +119,7 @@
           <div class="inputFeild">
             <h5>Select vehicle :</h5>
             <select name="vehicle" required id="vehicleType">
-              <option value="">Select Your vehicle</option>
+              <option value="" selected>Select Your vehicle</option>
               <option value="2">2 wheelers</option>
               <option value="3">3 wheelers</option>
               <option value="4">4 wheelers</option>
@@ -133,7 +133,7 @@
           <div class="inputFeild">
             <h5>Select company:</h5>
             <select name="company" required id="vehicleCompany">
-              <option value="sample">Select Your company</option>
+              <option value="" selected hidden>Select Your company</option>
             </select>
             <span class="material-symbols-outlined">
               emoji_transportation
@@ -142,7 +142,7 @@
           <div class="inputFeild">
             <h5>Select Model:</h5>
             <select name="model" id="vehicleModel" required>
-              <option value="sample">Select Your model</option>
+              <option value="" selected hidden>Select Your model</option>
             </select>
             <span class="material-symbols-outlined">
               emoji_transportation
@@ -150,14 +150,26 @@
           </div>
           <div class="inputFeild">
             <h5>Vehicle number :</h5>
-            <input type="text" required id="vehicleNumber" />
+            <input
+              type="text"
+              required
+              id="vehicleNumber"
+              pattern="^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$"
+              title="enter valid vehicle number ex: TN12AB1234"
+            />
             <span class="material-symbols-outlined">
               emoji_transportation
             </span>
           </div>
           <div class="inputFeild">
             <h5>Vehicle Year :</h5>
-            <input type="text" required id="vehicleYear" />
+            <input
+              type="text"
+              required
+              id="vehicleYear"
+              pattern="[0-9]{4}"
+              title="Year must be in 4 digits without spaces or alphabets "
+            />
             <span class="material-symbols-outlined">
               emoji_transportation
             </span>

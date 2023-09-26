@@ -71,7 +71,8 @@
             type="text"
             name=""
             id="name"
-            pattern="[A-Za-z ]{3,20}"
+            pattern="[A-Za-z ]{3,30}"
+            title="name should not be more than 30 characters "
             placeholder="Enter your Name "
             value=""
           />
@@ -96,22 +97,27 @@
             name=""
             value=""
             id="password"
-            pattern="[A-Za-z0-9]{3,6}"
+            pattern="[A-Za-z0-9]{6,10}"
             placeholder="Enter a password
           "
+            title="password must be in alphaNumeric Characters between 6 to 10 "
           />
+          <i id="eye" class="material-symbols-outlined">visibility </i>
         </div>
+
         <div class="inputContainer">
           <span class="material-symbols-outlined"> key </span>
           <input
             required
-            pattern="[A-Za-z0-9]{3,6}"
+            pattern="[A-Za-z0-9]{6,10}"
             type="password"
             name=""
             value=""
             id="confirmPassword"
-            placeholder="Confirm  password "
+            placeholder="Confirm password "
+            title="password must be in alphaNumeric Characters between 6 to 10 "
           />
+          <i id="Ceye" class="material-symbols-outlined">visibility </i>
         </div>
 
         <button type="submit">Create Accout</button>
